@@ -1,0 +1,42 @@
+---
+const routes = [
+  { path: "/", label: "Inicio" },
+  { path: "/services", label: "Servicios" },
+  { path: "/challenges", label: "Retos" },
+  { path: "/contact-us", label: "Contacto" },
+];
+
+const activePath = Astro.originPathname;
+---
+
+<nav class="flex justify-between items-center p-10">
+  <div>MyFondeo logo</div>
+
+  <ul class="flex justify-between items-center">
+    {
+      routes.map(({ path, label }) => (
+        <ul>
+          <a
+            href={path}
+            class:list={["mx-1.5 sm:mx-6", activePath == path ? "text-primary" : "text-white"]}
+          >
+            {label}
+          </a>
+          {activePath === path ? (
+            <div
+              transition:name="navbar-link-bar"
+              class="border-b-3 border-white mx-5"
+            />
+          ) : (
+            <div class="border-b-3 border-transparent" />
+          )}
+        </ul>
+      ))
+    }
+  </ul>
+
+  <div class="flex gap-3">
+    <button class="bg-transparent text-white btn">Iniciar sesión</button>
+    <button class="bg-white text-secondary btn">Empezar</button>
+  </div>
+</nav>

@@ -1,0 +1,31 @@
+---
+import Navbar from "@components/landing/Navbar.astro";
+import '../styles/landing.css'
+
+interface Props {
+  description?: string;
+  title?: string;
+  tags?: string[];
+}
+
+const {
+  description = "My fondeo es la aplicación de fondeo para apuestas deportivas #1.",
+  title = "My Fondeo", 
+  tags = ["My fondeo", "fondeo", "apuesta deportiva"]
+} = Astro.props;
+
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-background">
+    <Navbar/>
+    <main class="p-10">
+      <slot />
+    </main>
+  </body>
+</html>

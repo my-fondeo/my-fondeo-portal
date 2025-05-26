@@ -1,0 +1,5 @@
+@import './global.css';
+
+.btn {
+  @apply border border-white py-2 px-4 rounded-xl cursor-pointer font-bold;
+}

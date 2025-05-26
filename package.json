@@ -1,0 +1,24 @@
+{
+  "name": "my-fondeo-portal",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "tw:init": "tailwindcss init"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.7",
+    "astro": "^5.6.1",
+    "sharp": "^0.32.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.7",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.7"
+  }
+}

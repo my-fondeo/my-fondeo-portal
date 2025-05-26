@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+/* Astro config */
+@view-transition {
+  navigation: auto;
+}
+
+@theme {
+  /* Colores */
+  --color-primary: #04e4bc;
+  --color-secondary: #00164a;
+  
+  --color-background: #00164a;
+
+  /* Fuentes */
+  --font-poppins: "Poppins", sans-serif;
+}
+
+body { @apply font-poppins text-white }
