@@ -1,0 +1,16 @@
+---
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className = '' } = Astro.props;
+
+const IconComponent = (await import(`../assets/icon/${name}.svg`)).default;
+
+if (!IconComponent) {
+  console.warn(`Icon "${name}" not found.`);
+}
+---
+
+{IconComponent ? <IconComponent class={[className]} width="auto"/> : null}

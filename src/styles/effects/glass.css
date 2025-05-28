@@ -1,0 +1,25 @@
+@keyframes glassEffect {
+  from {
+    border-color: #fff0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    background: #fff0;
+  }
+  
+  to {
+    border-color: #ffffff1a;
+    backdrop-filter: blur(50px); 
+    -webkit-backdrop-filter: blur(50px);
+    background: #ffffff1a;
+  }
+}
+
+.glass-shadow {
+  background-color: #fff0;
+  border-bottom: 1px solid transparent;
+  /* animation: glassEffect both linear; */
+  animation-timeline: --scroll-body;
+}
+
+
+
