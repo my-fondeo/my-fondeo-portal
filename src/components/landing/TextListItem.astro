@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import indicator from "@assets/icon/text-list-item.png";
+import indicatorDark from "@assets/icon/text-list-item-dark.png";
+
+type TextListStyle = "normal" | "all-dark";
+
+interface Props {
+  className?: string;
+  variant?: TextListStyle;
+}
+
+const { className = "", variant = "normal" } = Astro.props;
+const width = variant == "normal" ? 50 : 40;
+const image = variant == "normal" ? indicator : indicatorDark;
+---
+
+<li class={className}>
+  <Image src={image} alt="" width={width} />
+
+  <span>
+    <slot />
+  </span>
+</li>
+
+<style>
+  @import "tailwindcss";
+  li {
+    @apply flex items-center list-none text-shadow-none gap-3;
+    text-decoration: none;
+  }
+</style>
+
+

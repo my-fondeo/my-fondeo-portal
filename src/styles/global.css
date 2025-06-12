@@ -11,9 +11,9 @@
   /* Colores */
   --color-primary: #04e4bc;
   --color-secondary: #00164a;
-  
+  --color-tertiary: #003e8f;
+  --color-quaternary: #000b38;
   --background-primary: linear-gradient(90deg, #000b38 0%, #002c6d 100%);  
-
   /* Fuentes */
   --font-poppins: "Poppins";
 }

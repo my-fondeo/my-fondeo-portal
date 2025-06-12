@@ -1,9 +1,51 @@
 ---
 import LandingLayout from "@layouts/LandingLayout.astro";
+
+import stressedImage from "@assets/img/stressed-person.png";
+import adviserImage from "@assets/img/adviser.png";
+import happyImage from "@assets/img/happy-person-phone.png";
+import { Image } from "astro:assets";
+import TextListItem from "@components/landing/TextListItem.astro";
+import BenefitCard from "@components/landing/BenefitCard.astro";
+import StepCard from "@components/landing/StepCard.astro";
+import { getCollection } from "astro:content";
+import ChallengeCardLanding from "@components/landing/ChallengeCardLanding.astro";
+import UsersOpinionsCarrousel from "@components/landing/UsersOpinionsCarrousel.tsx";
+
+const benefitCards = [
+  {
+    title: "Escalable",
+    icon: "rocket",
+    description: "Multiplica tus ganancias sin límites",
+  },
+  {
+    title: "Fondeo",
+    icon: "money",
+    description: "Gana sin arriesgar un dólar de tu bolsillo",
+  },
+  {
+    title: "Merecimiento",
+    icon: "target",
+    description: "Tu talento es tu única inversión.",
+  },
+  {
+    title: "Academia",
+    icon: "people",
+    description: "Aprende, compite y escala con expertos.",
+  },
+];
+
+const stepsCollection = (await getCollection("blogSteps")).sort(
+  (a, b) => +a.slug - +b.slug
+);
+
+const opinionsCollection = await getCollection("opinions");
+if (!opinionsCollection || !stepsCollection) return null;
 ---
 
 <LandingLayout>
-  <div class="landing-hero pt-5" >
+  <!--SECTION Vista inicial - Hero + Video-->
+  <div class="landing-hero pt-24">
     <div class="flex gap-5 flex-col">
       <h3 class="text-4xl font-semibold">
         ¿Tu pasión deportiva no te da ganancias reales?
@@ -21,20 +63,191 @@ import LandingLayout from "@layouts/LandingLayout.astro";
         Empieza tu evaluación
       </a>
     </div>
-    <div>
-      <div
-        class="border border-primary h-[600px] shadow-lg shadow-primary rounded-2xl overflow-hidden"
+
+    <div
+      class="border border-primary h-[600px] shadow-lg shadow-primary rounded-2xl overflow-hidden fade-on-scroll transition-transform"
+    >
+      <iframe
+        width="100%"
+        height="100%"
+        src="https://www.youtube.com/embed/9ZOLxE1gz_U?controls=0&rel=0&mute=1"
+        title="YouTube video player"
+        allowfullscreen
       >
-        <iframe
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/9ZOLxE1gz_U?controls=0&rel=0&mute=1"
-          title="YouTube video player"
-          allowfullscreen
-          
+      </iframe>
+    </div>
+  </div>
+  <!--!SECTION -->
+
+  <!--SECTION Problema - Solución -->
+  <div>
+    <div class="grid grid-cols-[40%_60%] gap-2">
+      <div class="flex justify-center" data-aos="fade-right">
+        <Image
+          src={stressedImage}
+          alt="Persona estresada"
+          height={347}
+          width={295.7}
+        />
+      </div>
+      <div class="space-y-5" data-aos="fade-left">
+        <h1 class="text-primary text-4xl font-bold">
+          ¿Te suena familiar alguna de estas historias?
+        </h1>
+        <TextListItem>
+          Sabes de deporte, analizas partidos y aún así,
+          <span class="text-primary">
+            ¿te cuesta convertir eso en ganancias? No estás solo/a.
+          </span>
+          Millones viven esa frustración.
+        </TextListItem>
+        <TextListItem>
+          Eres de los que analiza cada detalle, detecta patrones y sabe
+          identificar oportunidades en cada partido.
+          <span class="text-primary">
+            El problema no es tu habilidad, ¡es el tamaño de tu capital!
+          </span>
+        </TextListItem>
+        <button class="btn bg-white text-secondary ml-16"
+          >Ver cómo cambiar esto</button
         >
-        </iframe>
+      </div>
+    </div>
+    <div
+      class="bg-white rounded-4xl px-10 py-5 grid grid-cols-[75%_25%] relative"
+      data-aos="fade-topudddddddd"
+    >
+      <div class="space-y-3">
+        <h1 class="text-secondary text-4xl font-bold">
+          ¡Hay quienes ya viven del deporte!
+        </h1>
+        <h3 class="text-secondary text-xl">
+          Su secreto está a punto de ser revelado.
+        </h3>
+        <TextListItem className="text-secondary" variant="all-dark">
+          Es hora de generar ingresos con tu conocimiento deportivo.
+          <strong>Esta es tu liga.</strong>
+        </TextListItem>
+        <TextListItem className="text-secondary" variant="all-dark">
+          Detrás de la frustración general, hay una realidad oculta:
+          <strong>sí es posible vivir del conocimiento deportivo.</strong> Existe
+          un grupo de visionarios que han convertido su pasión en una fuente de ingresos
+          real, y no, <strong>no tienen más suerte que tú.</strong>
+        </TextListItem>
+        <button class="btn bg-secondary ml-12 mb-0"
+          >Descubre el Secreto Ahora</button
+        >
+      </div>
+      <Image
+        src={adviserImage}
+        alt="Asesora"
+        width={297}
+        height={336}
+        class="absolute right-0 bottom-0"
+      />
+    </div>
+  </div>
+  <!--!SECTION -->
+
+  <!--SECTION Beneficios y pasos -->
+  <div class="flex flex-col items-center">
+    <div class="grid grid-cols-[70%_30%] gap-2">
+      <div class="space-y-5">
+        <h2 class="text-primary text-4xl font-bold">
+          ¡Tu puente al siguiente nivel!
+        </h2>
+        <p>
+          <strong>MyFondeo</strong> es la plataforma de fondeo para
+          <strong> pronósticos deportivos </strong>
+          diseñada para ti. Aquí, tu conocimiento en deportes es tu mayor
+          <strong>activo.</strong>
+        </p>
+        <h3>Nuestros beneficios</h3>
+        <div class="flex justify-between w-[100%] gap-2">
+          {
+            benefitCards.map(({ title, icon, description }) => (
+              <BenefitCard title={title} icon={icon as any}>
+                {description}
+              </BenefitCard>
+            ))
+          }
+        </div>
+      </div>
+      <Image
+        src={happyImage}
+        alt="Persona estresada"
+        height={347}
+        width={295.7}
+        class="mask-b-from-75% mask-b-to-99%"
+      />
+    </div>
+    <div class="bg-white rounded-4xl p-7.5 text-secondary w-[120%]">
+      <h2 class="text-2xl font-bold">Así de simple es operar con MyFondeo.</h2>
+      <p class="text-xl font-medium">Tu Camino al Éxito en 3 Pasos:</p>
+      <div class="grid grid-cols-3 gap-5 mt-3 px-5">
+        {
+          stepsCollection.map(async ({ data, render }, i) => {
+            const { Content } = await render();
+            return (
+              <StepCard number={i + 1} title={data.title}>
+                <Content />
+              </StepCard>
+            );
+          })
+        }
       </div>
     </div>
   </div>
+  <!--!SECTION -->
+
+  <!--SECTION Challenges -->
+  <div>
+    <div data-aos="fade-right" data-aos-once="true">
+      <h1 class="text-5xl font-bold">Desafío de Trading Deportivo.</h1>
+      <h3 class="text-3xl font-semibold">En tus términos.</h3>
+      <span class="block text-[1.5rem] mt-2 font-normal"
+        ><strong>¿Más accesible o más intenso?</strong> ¡Adapta nuestro Desafío MyFondeo
+        a tu nivel!</span
+      >
+    </div>
+    <div class="flex justify-center items-center gap-10 mt-16">
+      <ChallengeCardLanding
+        items={[
+          "Evaluación tradicional",
+          "Perdida máxima diaria",
+          "Customizables",
+          "Objetivo fase 2 más bajo",
+        ]}
+        popular
+      />
+      <ChallengeCardLanding
+        items={[
+          "Sin perdida máxima diaria",
+          "Limite beneficio diario",
+          "Más asequibles",
+          "Objetivo beneficio más bajo",
+        ]}
+      />
+    </div>
+  </div>
+  <!--!SECTION  -->
+
+  <!-- SECTION Opiniones usuarios-->
+  <div class="flex flex-col items-center">
+    <h1 class="text-4xl font-semibold text-center mb-10">
+      Ellos ya viven del deporte. Conoce sus resultados.
+    </h1>
+
+    <div class="w-[130%]">
+      <UsersOpinionsCarrousel client:load
+        items = {opinionsCollection.map( ( {data} ) => data )}
+      />
+    </div>
+  </div>
 </LandingLayout>
+
+<style>
+  .swiper {
+    overflow: auto!important;
+  }
+</style>

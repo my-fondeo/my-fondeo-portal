@@ -1,6 +1,7 @@
 ---
 import Navbar from "@components/landing/Navbar.astro";
 import "../styles/landing.css";
+import AOSWrapper from "@components/AOSWrapper.jsx";
 
 interface Props {
   description?: string;
@@ -33,8 +34,11 @@ const {
   </head>
   <body>
     <Navbar />
-    <main class="p-10 pt-[110px] max-w-[1080px] z-2">
-      <slot />
+    <!-- FIXME pb-32 -->
+    <main class="p-10 pt-[110px] max-w-[min(1080px,79vw)] z-2 flex flex-col gap-48 pb-32">
+      <AOSWrapper client:only>
+        <slot />
+      </AOSWrapper>
     </main>
   </body>
 </html>

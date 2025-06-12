@@ -1,7 +1,7 @@
 ---
 import Icon from "@components/Icon.astro";
 import Logo from "./Logo.astro";
-import '@styles/effects/glass.css'
+import "@styles/effects/glass.css";
 
 const routes = [
   { path: "/", label: "Inicio" },
@@ -13,8 +13,8 @@ const routes = [
 const activePath = Astro.originPathname;
 ---
 
-<nav class="flex justify-between items-center px-10 py-7 w-[100vw] fixed z-20 glass-shadow ">
-  <Logo/>
+<nav id="nav">
+  <Logo />
 
   <ul class="flex justify-between items-center">
     {
@@ -22,7 +22,10 @@ const activePath = Astro.originPathname;
         <ul>
           <a
             href={path}
-            class:list={["mx-1.5 sm:mx-6", activePath == path ? "text-primary" : "text-white"]}
+            class:list={[
+              "mx-1.5 sm:mx-6",
+              activePath == path ? "text-primary" : "text-white",
+            ]}
           >
             {label}
           </a>
@@ -45,3 +48,39 @@ const activePath = Astro.originPathname;
   </div>
   <!-- <div class="absolute w-[90vw] border-[1px] border-white bottom-0 left-[5vw]"></div> -->
 </nav>
+
+<style>
+  @import "tailwindcss";
+
+  #nav {
+    @apply flex justify-between items-center px-10 py-7 w-[100vw] fixed z-20 border-b-1;
+    transition:
+      border-color ease-in-out 0.4s,
+      background-color ease-out 0.25s;
+  }
+
+  #nav:not(.scrolled) {
+    @apply bg-transparent border-white/0 backdrop-blur-[0px];
+  }
+
+  #nav.scrolled {
+    @apply bg-gray-400/5;
+    @apply border-white/25;
+    @apply backdrop-blur-sm;
+  }
+</style>
+
+<script>
+  function onScroll() {
+    const header = document.getElementById("nav");
+    if (!header) return;
+    
+    if (window.scrollY > 100) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  }
+
+  document.addEventListener("scroll", onScroll);
+</script>

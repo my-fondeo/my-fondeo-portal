@@ -1,0 +1,37 @@
+---
+import rocket from "@assets/icon/rocket.svg";
+import money from "@assets/icon/money.svg";
+import target from "@assets/icon/target.svg";
+import people from "@assets/icon/people.svg";
+import Icon from "@components/Icon.astro";
+
+const icons = {
+  rocket,
+  money,
+  target,
+  people,
+};
+
+interface Props {
+  title: string;
+  icon: keyof typeof icons;
+}
+
+const { title, icon } = Astro.props;
+---
+
+<div class="flex flex-col max-w-[175px]">
+  <div class="bg-white rounded-2xl flex items-center gap-2 p-2">
+    <div
+      class="rounded-3xl bg-secondary flex items-center justify-center p-1.5"
+    >
+      <Icon name={icon} class="w-[25px] h-[25px]" />
+    </div>
+    <h4 class="text-md text-secondary font-bold">{title}</h4>
+  </div>
+  <div
+    class="border-white border bg-secondary rounded-2xl mt-[-10px] text-white text-center font-light px-2 py-2 text-xs"
+  >
+    <slot />
+  </div>
+</div>

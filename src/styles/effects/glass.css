@@ -1,3 +1,5 @@
+@import '@styles/global.css';
+
 @keyframes glassEffect {
   from {
     border-color: #fff0;
@@ -13,13 +15,4 @@
     background: #ffffff1a;
   }
 }
-
-.glass-shadow {
-  background-color: #fff0;
-  border-bottom: 1px solid transparent;
-  /* animation: glassEffect both linear; */
-  animation-timeline: --scroll-body;
-}
-
-
 

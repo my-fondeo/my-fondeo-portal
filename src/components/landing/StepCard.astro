@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  number: number;
+}
+
+const { number, title } = Astro.props;
+---
+
+<div
+  class="rounded-xl bg-secondary text-white p-3"
+  data-aos="fade-down"
+  data-aos-delay={number * 100}
+  data-aos-once="true"
+>
+  <div class="flex gap-2 items-center">
+    <div
+      class="rounded-4xl bg-white text-secondary px-3 aspect-square flex items-center text-2xl font-bold"
+    >
+      {number}
+    </div>
+    <span class="font-semibold text-lg">
+      {title}
+    </span>
+  </div>
+  <div class="mt-2 font-extralight [&_strong]:font-bold px-1">
+    <slot />
+  </div>
+</div>

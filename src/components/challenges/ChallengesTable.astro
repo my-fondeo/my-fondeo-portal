@@ -1,0 +1,23 @@
+---
+import astroConfig from "astro.config.mjs";
+import ChallengeCard from "./ChallengeCard";
+---
+
+<div class="grid grid-cols-6">
+
+  <div></div>
+  <ChallengeCard
+    totalAmount={2000}
+    values={[{
+      key: 'profitTargetPhase1', 
+      type: 'percentage',
+      value: 35,
+      editable: true,
+      minValue: 28,
+      maxValue: 50,
+      label: 'Objetivo beneficios'
+    }]}
+    
+  />
+
+</div>
