@@ -2,6 +2,8 @@
 import LandingLayout from "@layouts/LandingLayout.astro";
 
 import stressedImage from "@assets/img/stressed-person.png";
+import doubting from "@assets/img/doubting.png";
+import surprisedPerson from "@assets/img/surprised-person.png";
 import adviserImage from "@assets/img/adviser.png";
 import happyImage from "@assets/img/happy-person-phone.png";
 import { Image } from "astro:assets";
@@ -11,6 +13,7 @@ import StepCard from "@components/landing/StepCard.astro";
 import { getCollection } from "astro:content";
 import ChallengeCardLanding from "@components/landing/ChallengeCardLanding.astro";
 import UsersOpinionsCarrousel from "@components/landing/UsersOpinionsCarrousel.tsx";
+import FAQS from "@components/landing/faqs/FAQs.astro";
 
 const benefitCards = [
   {
@@ -239,15 +242,41 @@ if (!opinionsCollection || !stepsCollection) return null;
     </h1>
 
     <div class="w-[130%]">
-      <UsersOpinionsCarrousel client:load
-        items = {opinionsCollection.map( ( {data} ) => data )}
+      <UsersOpinionsCarrousel
+        client:load
+        items={opinionsCollection.map(({ data }) => data)}
       />
     </div>
+  </div>
+
+  <div class="flex flex-col items-center">
+    <div class="w-[150%] grid grid-cols-[35%_55%] gap-[10%] pb-32">
+      <div data-aos="fade-right" data-aos-mirror="true" data-aos-offset="500" > 
+        <h1 class="text-5xl text-primary-text font-bold">
+          Despeja tus dudas <br />
+          <span class="text-primary">(al instante)</span>
+        </h1>
+        <Image src={doubting} alt="" />
+      </div>
+      <FAQS />
+    </div>
+  </div>
+
+  <div class="pl-5 grid grid-cols-[60%_40%]">
+    <div>
+      <span class="text-4xl text-primary-text font-semibold mt-2">Convierte tu conocimiento deportivo en</span> <br>
+      <span class="text-7xl text-primary font-bold">Ingresos reales</span>
+
+      <button class="btn bg-white text-secondary ml-4 mt-32" style="padding: 1rem 3rem;">
+        Quiero Empezar
+      </button>
+    </div>
+    <Image src={surprisedPerson} alt="" />
   </div>
 </LandingLayout>
 
 <style>
   .swiper {
-    overflow: auto!important;
+    overflow: auto !important;
   }
 </style>

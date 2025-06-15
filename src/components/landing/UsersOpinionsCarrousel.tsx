@@ -82,7 +82,7 @@ const Slide = ({ item, i }: SlideProps) => {
       className={`transition-all duration-300 rounded-xl cursor-pointer mt-10
               ${
                 slide.isActive
-                  ? "scale-100 border border-primary bg-secondary z-10 text-white"
+                  ? "scale-100 border border-primary bg-secondary z-10 text-primary-text"
                   : "scale-90 border border-quaternary bg-white text-secondary"
               }
             `}

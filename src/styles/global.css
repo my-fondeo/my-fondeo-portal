@@ -6,6 +6,9 @@
   navigation: auto;
 }
 
+:root {
+  interpolate-size: allow-keywords;
+}
 
 @theme {
   /* Colores */
@@ -13,7 +16,9 @@
   --color-secondary: #00164a;
   --color-tertiary: #003e8f;
   --color-quaternary: #000b38;
-  --background-primary: linear-gradient(90deg, #000b38 0%, #002c6d 100%);  
+  --background-primary: linear-gradient(90deg, #000b38 0%, #002c6d 100%);
+
+  --color-primary-text: #FEFEFE;
   /* Fuentes */
   --font-poppins: "Poppins";
 }

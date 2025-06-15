@@ -1,0 +1,61 @@
+---
+import Icon from "@components/Icon.astro";
+import Logo from "../Logo.astro";
+const date = new Date();
+const year = date.getFullYear();
+---
+
+<div
+  class="bg-secondary z-50 w-full grid grid-cols-[100px_1fr_1fr] p-6 pl-20 gap-16"
+>
+  <Icon name="mf" />
+
+  <div class="flex justify-evenly">
+    <span class="flex flex-col items-center gap-3 text-center">
+      <h4 class="text-primary font-bold text-xl">Descubre</h4>
+      <a href="/" class="text-primary-text font-semibold mt-7.5">Inicio</a>
+      <a href="/" class="text-primary-text font-semibold">Sobre nosotros</a>
+      <a href="/" class="text-primary-text font-semibold">Como funciona</a>
+      <a href="/" class="text-primary-text font-semibold">Historias de éxito</a>
+    </span>
+
+    <span class="flex flex-col items-center gap-3 text-center">
+      <h4 class="text-primary font-bold text-xl">Ayuda</h4>
+      <a href="/" class="text-primary-text font-semibold mt-7.5">Legal</a>
+      <a href="/" class="text-primary-text font-semibold"
+        >Preguntas frecuentes</a
+      >
+      <a href="/" class="text-primary-text font-semibold"
+        >Términos y condiciones</a
+      >
+      <a href="/" class="text-primary-text font-semibold"
+        >Política de privacidad</a
+      >
+    </span>
+    <span class="flex flex-col items-start gap-2.5">
+      <h4 class="text-primary font-bold text-xl">Conecta</h4>
+      <a href="/" class="text-primary-text font-semibold flex items-center gap-2 mt-5">
+        <Icon name="instagram" class="text-primary w-8" /> Instagram
+      </a>
+      <a href="/" class="text-primary-text font-semibold flex items-center gap-2">
+        <Icon name="tiktok" class="text-primary w-8" /> TikTok
+      </a>
+      <a href="/" class="text-primary-text font-semibold flex items-center gap-2">
+        <Icon name="discord" class="text-primary w-8" /> Discord
+      </a>
+      <a href="/" class="text-primary-text font-semibold flex items-center gap-2">
+        <Icon name="youtube" class="text-primary w-8" /> Youtube
+      </a>
+    </span>
+  </div>
+  <span class="text-center">
+    <p class="font-semibold">
+      ©{year} MyFondeo. Todos los derechos reservados.
+    </p>
+    <p class="font-bold mt-5 text-left">
+      MyFondeo no es una casa de apuestas ni un corredor de apuestas. Somos una
+      plataforma de fondeo para trading basado en pronósticos deportivos. Operar
+      implica riesgos y no garantiza ganancias.
+    </p>
+  </span>
+</div>

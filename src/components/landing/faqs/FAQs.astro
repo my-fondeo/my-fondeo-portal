@@ -1,0 +1,42 @@
+---
+import FAQItem from "./FAQItem.astro";
+
+const faqs = [
+  {
+    question: "¿Cómo puedo acceder al capital fondeado?",
+    response:
+      "Debes superar uno de nuestros challenges de evaluación. Estos desafíos están diseñados para validar tu habilidad y disciplina en el trading deportivo.",
+  },
+  {
+    question: "¿Cuáles son los requisitos para participar en los challenges?",
+    response:
+      "Debes superar uno de nuestros challenges de evaluación. Estos desafíos están diseñados para validar tu habilidad y disciplina en el trading deportivo.",
+  },
+  {
+    question: "¿MyFondeo es una casa de apuestas o un servicio de apuestas?",
+    response:
+      "Debes superar uno de nuestros challenges de evaluación. Estos desafíos están diseñados para validar tu habilidad y disciplina en el trading deportivo.",
+  },
+  {
+    question: "¿Qué pasa si no supero un desafío?",
+    response:
+      "Debes superar uno de nuestros challenges de evaluación. Estos desafíos están diseñados para validar tu habilidad y disciplina en el trading deportivo.",
+  },
+  {
+    question: "¿Puedo operar desde cualquier país?",
+    response:
+      "Debes superar uno de nuestros challenges de evaluación. Estos desafíos están diseñados para validar tu habilidad y disciplina en el trading deportivo.",
+  },
+  {
+    question: "¿Cuántos desafíos o planes de fondeo ofrecen?",
+    response:
+      "Debes superar uno de nuestros challenges de evaluación. Estos desafíos están diseñados para validar tu habilidad y disciplina en el trading deportivo.",
+  },
+];
+---
+
+<div class="flex flex-col items-stretch gap-5 overflow-y-visible">
+  { faqs.map(({question, response}) => (
+    <FAQItem question={question}>{ response }</FAQItem>
+  )) }
+</div>

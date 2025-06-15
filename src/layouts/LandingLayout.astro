@@ -1,6 +1,8 @@
 ---
-import Navbar from "@components/landing/Navbar.astro";
+import Navbar from "@components/landing/ui/Navbar.astro";
+import Footer from "@components/landing/ui/Footer.astro";
 import "../styles/landing.css";
+import "../styles/normalize.css";
 import AOSWrapper from "@components/AOSWrapper.jsx";
 
 interface Props {
@@ -15,7 +17,6 @@ const {
   title = "My Fondeo", 
   tags = ["My fondeo", "fondeo", "apuesta deportiva"],
 } = Astro.props;
-  
 ---
 
 <html lang="es">
@@ -34,11 +35,11 @@ const {
   </head>
   <body>
     <Navbar />
-    <!-- FIXME pb-32 -->
-    <main class="p-10 pt-[110px] max-w-[min(1080px,79vw)] z-2 flex flex-col gap-48 pb-32">
+    <main class="p-10 pt-[110px] max-w-[min(1080px,79vw)] z-2 flex flex-col gap-48 pb-0">
       <AOSWrapper client:only>
         <slot />
       </AOSWrapper>
     </main>
+    <Footer />
   </body>
 </html>

@@ -1,6 +1,6 @@
 ---
 import Icon from "@components/Icon.astro";
-import Logo from "./Logo.astro";
+import Logo from "../Logo.astro";
 import "@styles/effects/glass.css";
 
 const routes = [
@@ -24,7 +24,7 @@ const activePath = Astro.originPathname;
             href={path}
             class:list={[
               "mx-1.5 sm:mx-6",
-              activePath == path ? "text-primary" : "text-white",
+              activePath == path ? "text-primary" : "text-primary-text",
             ]}
           >
             {label}
@@ -43,7 +43,7 @@ const activePath = Astro.originPathname;
   </ul>
 
   <div class="flex gap-3">
-    <button class="bg-transparent text-white btn">Iniciar sesión</button>
+    <button class="bg-transparent text-primary-text btn">Iniciar sesión</button>
     <button class="bg-white text-secondary btn">Empezar</button>
   </div>
   <!-- <div class="absolute w-[90vw] border-[1px] border-white bottom-0 left-[5vw]"></div> -->

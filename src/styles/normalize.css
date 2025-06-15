@@ -1,0 +1,13 @@
+details summary::-webkit-details-marker {
+  display: none;
+}
+details summary::marker {
+  display: none;
+}
+details summary {
+  list-style: none; /* Oculta viñeta en Firefox */
+}
+
+details summary::-webkit-details-marker {
+  display: none; /* Oculta flecha en Chrome/Safari */
+}
