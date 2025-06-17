@@ -16,10 +16,9 @@ const currentRoute = Astro.url.pathname;
 
 const {
   description = "My fondeo es la aplicación de fondeo para apuestas deportivas #1.",
-  title = "My Fondeo", 
+  title = "My Fondeo",
   tags = ["My fondeo", "fondeo", "apuesta deportiva"],
 } = Astro.props;
-console.log(currentRoute)
 ---
 
 <html lang="es">
@@ -38,11 +37,13 @@ console.log(currentRoute)
   </head>
   <body>
     <Navbar />
-    <main class="p-10 pt-[110px] w-[1080px] z-2 flex flex-col items-center gap-48 pb-0 flex-1">
+    <main
+      class="p-10 pt-[110px] w-[1080px] z-2 flex flex-col items-center gap-48 pb-0 flex-1"
+    >
       <AOSWrapper client:only>
         <slot />
       </AOSWrapper>
     </main>
-    { currentRoute !== '/auth' && <Footer />}
+    {!currentRoute.includes("/auth") && <Footer />}
   </body>
 </html>
