@@ -236,14 +236,14 @@ if (!opinionsCollection || !stepsCollection) return null;
   <!--!SECTION  -->
 
   <!-- SECTION Opiniones usuarios-->
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center max-w-full">
     <h1 class="text-4xl font-semibold text-center mb-10">
       Ellos ya viven del deporte. Conoce sus resultados.
     </h1>
 
     <div class="w-[130%]">
       <UsersOpinionsCarrousel
-        client:load
+        client:visible
         items={opinionsCollection.map(({ data }) => data)}
       />
     </div>

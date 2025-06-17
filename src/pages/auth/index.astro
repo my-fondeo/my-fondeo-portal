@@ -1,0 +1,42 @@
+---
+import LandingLayout from "@layouts/LandingLayout.astro";
+import { AuthContainer } from "@components/auth/AuthContainer";
+---
+
+<LandingLayout>
+  <div class="grid grid-cols-[60%_1fr] h-186 w-[95vw] xl:w-[125%] mt-8">
+    <AuthContainer client:only />
+    <div
+      class="backdrop-blur-md bg-gray-100/5 border border-primary rounded-r-2xl p-12 flex flex-col justify-evenly"
+    >
+      <div>
+        <p class="text-lg text-center">
+          "Gracias a MyFondeo, mi pasión se convirtió en mi negocio.
+          ¡Recomendado 100%!"
+        </p>
+        <p class="text-lg font-bold text-right mt-[-12px]">Ricardo G.</p>
+      </div>
+      <!--  -->
+      <div>
+        <p class="text-lg text-center">
+          "La plataforma es intuitiva y el 80% de mis ganancias es mío. Súper transparente."
+        </p>
+        <p class="text-lg font-bold text-right mt-[-12px]">Daniela C.</p>
+      </div>
+      <!--  -->
+      <div>
+        <p class="text-lg text-center">
+          "Pasé del 'apostar' al 'operar'. MyFondeo me dio la disciplina y el capital. ¡Imparable!"
+        </p>
+        <p class="text-lg font-bold text-right mt-[-12px]">Andrés M.</p>
+      </div>
+      <!--  -->
+      <div>
+        <p class="text-lg text-center">
+          "La plataforma es de primer nivel. Fácil de usar y con resultados que hablan por sí mismos."
+        </p>
+        <p class="text-lg font-bold text-right mt-[-12px]">Carlos V.</p>
+      </div>
+    </div>
+  </div>
+</LandingLayout>

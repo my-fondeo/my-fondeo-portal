@@ -19,6 +19,9 @@
   --background-primary: linear-gradient(90deg, #000b38 0%, #002c6d 100%);
 
   --color-primary-text: #FEFEFE;
+  
+  --color-bg: #EEE;
+
   /* Fuentes */
   --font-poppins: "Poppins";
 }

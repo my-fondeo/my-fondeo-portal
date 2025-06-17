@@ -42,7 +42,7 @@ export default ({ items, firstIndex = 0 }: Props) => {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        className="w-full relative"
+        className="max-w-[90%] relative"
       >
         {items.map((item, i) => (
           <SwiperSlide key={i}>

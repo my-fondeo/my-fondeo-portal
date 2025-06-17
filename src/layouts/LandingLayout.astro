@@ -12,11 +12,14 @@ interface Props {
   class?: string;
 }
 
+const currentRoute = Astro.url.pathname;
+
 const {
   description = "My fondeo es la aplicación de fondeo para apuestas deportivas #1.",
   title = "My Fondeo", 
   tags = ["My fondeo", "fondeo", "apuesta deportiva"],
 } = Astro.props;
+console.log(currentRoute)
 ---
 
 <html lang="es">
@@ -35,11 +38,11 @@ const {
   </head>
   <body>
     <Navbar />
-    <main class="p-10 pt-[110px] max-w-[min(1080px,79vw)] z-2 flex flex-col gap-48 pb-0">
+    <main class="p-10 pt-[110px] w-[1080px] z-2 flex flex-col items-center gap-48 pb-0 flex-1">
       <AOSWrapper client:only>
         <slot />
       </AOSWrapper>
     </main>
-    <Footer />
+    { currentRoute !== '/auth' && <Footer />}
   </body>
 </html>

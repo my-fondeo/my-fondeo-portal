@@ -7,6 +7,7 @@ export interface ChallengeValueVariable {
   maxTotalLoss: number
   timeLimit: number
   profitSplit: number
+  benefitDivision: number
   fee: number
 }
 
@@ -20,7 +21,7 @@ export interface ChallengeValueVariablePro
     dailyProfitLimit: number
 }
 
-export type ChallengeData = ChallengeValueVariableRegular | ChallengeValueVariablePro;
+export type ChallengeData = ChallengeValueVariableRegular & ChallengeValueVariablePro;
 
 export type formatType = "amount" | "percentage" | "days";
 
@@ -34,7 +35,7 @@ export interface ChallengeValue {
   label?: string;
 }
 
-export interface ChallengeTableData {
+export interface ChallengeTableColumnData {
   values: ChallengeValue[];
 }
 
