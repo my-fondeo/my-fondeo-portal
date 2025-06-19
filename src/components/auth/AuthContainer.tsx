@@ -34,7 +34,7 @@ export const AuthContainer = () => {
         </a>
         <a
           className={`flex items-center cursor-pointer font-bold z-100 text-lg h-[80%] ${
-            mode == "#register" ? "text-secondary" : ""
+            !isLogin ? "text-secondary" : ""
           }`}
           href="#register"
         >
