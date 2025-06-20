@@ -10,6 +10,10 @@
   interpolate-size: allow-keywords;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   /* Colores */
   --color-primary: #04e4bc;

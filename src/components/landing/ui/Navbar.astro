@@ -4,9 +4,9 @@ import "@styles/effects/glass.css";
 
 const routes = [
   { path: "/", label: "Inicio" },
-  { path: "/services", label: "Servicios" },
-  { path: "/challenges", label: "Retos" },
-  { path: "/contact-us", label: "Contacto" },
+  { path: "/#quienes-somos", label: "Quienes Somos" },
+  { path: "/#FAQ", label: "FAQ" },
+  { path: "/challenges", label: "Opera y Gana" },
 ];
 
 const activePath = Astro.originPathname;
@@ -84,4 +84,59 @@ const activePath = Astro.originPathname;
   }
 
   document.addEventListener("scroll", onScroll);
+</script>
+
+<script type="module">
+  const sections = [
+    { id: "quienes-somos", path: "/#quienes-somos" },
+    { id: "FAQ", path: "/#FAQ" },
+    { id: null, path: "/" }, // fallback para arriba del todo
+  ];
+
+  const navLinks = document.querySelectorAll("#nav a[href^='/']");
+
+  const updateActiveLink = (path) => {
+    navLinks.forEach((link) => {
+      const isActive = link.getAttribute("href") === path;
+      link.classList.toggle("text-primary", isActive);
+      link.classList.toggle("text-primary-text", !isActive);
+
+      const underline = link.nextElementSibling;
+      if (underline?.classList.contains("underline-indicator")) {
+        underline.style.borderColor = isActive ? "white" : "transparent";
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      const topVisible = visible[0];
+      if (!topVisible) return;
+
+      const id = topVisible.target.id;
+      const match = sections.find((s) => s.id === id);
+      updateActiveLink(match?.path ?? "/");
+    },
+    {
+      threshold: 0.5,
+      rootMargin: "-50% 0px -30% 0px",
+    }
+  );
+
+  sections.forEach(({ id }) => {
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  window.addEventListener("load", () => {
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      el?.scrollIntoView();
+    }
+  });
 </script>

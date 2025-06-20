@@ -83,7 +83,7 @@ if (!opinionsCollection || !stepsCollection) return null;
   <!--!SECTION -->
 
   <!--SECTION Problema - Solución -->
-  <div>
+  <div id="quienes-somos" class="pt-30">
     <div class="grid grid-cols-[40%_60%] gap-2">
       <div class="flex justify-center" data-aos="fade-right">
         <Image
@@ -203,38 +203,6 @@ if (!opinionsCollection || !stepsCollection) return null;
   </div>
   <!--!SECTION -->
 
-  <!--SECTION Challenges -->
-  <div>
-    <div data-aos="fade-right" data-aos-once="true">
-      <h1 class="text-5xl font-bold">Desafío de Trading Deportivo.</h1>
-      <h3 class="text-3xl font-semibold">En tus términos.</h3>
-      <span class="block text-[1.5rem] mt-2 font-normal"
-        ><strong>¿Más accesible o más intenso?</strong> ¡Adapta nuestro Desafío MyFondeo
-        a tu nivel!</span
-      >
-    </div>
-    <div class="flex justify-center items-center gap-10 mt-16">
-      <ChallengeCardLanding
-        items={[
-          "Evaluación tradicional",
-          "Perdida máxima diaria",
-          "Customizables",
-          "Objetivo fase 2 más bajo",
-        ]}
-        popular
-      />
-      <ChallengeCardLanding
-        items={[
-          "Sin perdida máxima diaria",
-          "Limite beneficio diario",
-          "Más asequibles",
-          "Objetivo beneficio más bajo",
-        ]}
-      />
-    </div>
-  </div>
-  <!--!SECTION  -->
-
   <!-- SECTION Opiniones usuarios-->
   <div class="flex flex-col items-center max-w-full">
     <h1 class="text-4xl font-semibold text-center mb-10">
@@ -249,7 +217,7 @@ if (!opinionsCollection || !stepsCollection) return null;
     </div>
   </div>
 
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center pt-29" id="FAQ">
     <div class="w-[150%] grid grid-cols-[35%_55%] gap-[10%] pb-32">
       <div data-aos="fade-right" data-aos-mirror="true" data-aos-offset="500" > 
         <h1 class="text-5xl text-primary-text font-bold">

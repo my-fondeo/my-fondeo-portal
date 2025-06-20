@@ -4,7 +4,6 @@ import Footer from "@components/landing/ui/Footer.astro";
 import "../styles/landing.css";
 import "../styles/normalize.css";
 import AOSWrapper from "@components/AOSWrapper.jsx";
-
 interface Props {
   description?: string;
   title?: string;
@@ -40,9 +39,8 @@ const {
     <main
       class="p-10 pt-[110px] w-[1080px] z-2 flex flex-col items-center gap-48 pb-0 flex-1"
     >
-      <AOSWrapper client:only>
-        <slot />
-      </AOSWrapper>
+      <AOSWrapper client:only />
+      <slot />
     </main>
     {!currentRoute.includes("/auth") && <Footer />}
   </body>
