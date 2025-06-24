@@ -34,7 +34,7 @@ const Login = () => {
         passInput
         className="mt-2"
       />
-      <button className="mt-6 py-3 px-10 bg-quaternary text-primary-text cursor-pointer">
+      <button className="mt-6 py-3 px-10 bg-quaternary text-primary-text cursor-pointer rounded-xl">
         Ingresar
       </button>
       <br />

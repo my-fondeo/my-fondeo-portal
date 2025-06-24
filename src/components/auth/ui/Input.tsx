@@ -23,7 +23,7 @@ export const Input = ({
       <div className="relative w-full">
         <input
           type={passInput && !showPassword ? "password" : "text"}
-          className="bg-quaternary p-3 text-primary-text placeholder-primary-text/50 outline-0 w-full"
+          className="bg-quaternary p-3 text-primary-text placeholder-primary-text/50 outline-0 w-full rounded-xl"
           {...props}
         />
         {passInput &&

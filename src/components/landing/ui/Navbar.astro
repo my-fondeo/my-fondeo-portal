@@ -15,30 +15,27 @@ const activePath = Astro.originPathname;
 <nav id="nav">
   <Logo />
 
-  <ul class="flex justify-between items-center">
+  <ul class="flex justify-between items-center relative">
     {
       routes.map(({ path, label }) => (
         <ul>
           <a
             href={path}
+            data-path={path}
             class:list={[
               "mx-1.5 sm:mx-6",
-              activePath == path ? "text-primary" : "text-primary-text",
+              "nav-link",
+              activePath == path ? "is-active" : "",
+              activePath == path ? " mx-5 text-primary" : "",
             ]}
           >
             {label}
           </a>
-          {activePath === path ? (
-            <div
-              transition:name="navbar-link-bar"
-              class="border-b-3 border-white mx-5"
-            />
-          ) : (
-            <div class="border-b-3 border-transparent" />
-          )}
         </ul>
       ))
     }
+
+    <div class="nav-indicator"></div>
   </ul>
 
   <div class="flex gap-3">
@@ -69,6 +66,14 @@ const activePath = Astro.originPathname;
     @apply border-white/25;
     @apply backdrop-blur-sm;
   }
+
+  .nav-indicator {
+    @apply absolute bottom-[-.2rem] h-1 bg-white rounded-sm;
+    transition:
+      left 0.3s ease,
+      width 0.3s ease;
+    pointer-events: none;
+  }
 </style>
 
 <script>
@@ -88,55 +93,60 @@ const activePath = Astro.originPathname;
 
 <script type="module">
   const sections = [
+    { id: null, path: "/" }, // fallback para arriba del todo
     { id: "quienes-somos", path: "/#quienes-somos" },
     { id: "FAQ", path: "/#FAQ" },
-    { id: null, path: "/" }, // fallback para arriba del todo
   ];
 
-  const navLinks = document.querySelectorAll("#nav a[href^='/']");
+  const secondSection = document.getElementById("quienes-somos");
+  const thirdSection = document.getElementById("FAQ");
 
-  const updateActiveLink = (path) => {
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  function updateNavIndicator() {
+    const activeLink = document.querySelector(".nav-link.is-active");
+    const indicator = document.querySelector(".nav-indicator");
+
+    if (!activeLink || !indicator) return;
+
+    const { offsetLeft, offsetWidth } = activeLink;
+    indicator.style.left = `${offsetLeft}px`;
+    indicator.style.width = `${offsetWidth}px`;
+  }
+
+  function updateActiveLink(path) {
     navLinks.forEach((link) => {
-      const isActive = link.getAttribute("href") === path;
+      const isActive = link.dataset.path === path;
       link.classList.toggle("text-primary", isActive);
       link.classList.toggle("text-primary-text", !isActive);
-
-      const underline = link.nextElementSibling;
-      if (underline?.classList.contains("underline-indicator")) {
-        underline.style.borderColor = isActive ? "white" : "transparent";
-      }
+      link.classList.toggle("is-active", isActive);
     });
-  };
+  }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+  updateStyle(true);
 
-      const topVisible = visible[0];
-      if (!topVisible) return;
+  function updateStyle(initial = false) {
+    if ("/" != window.location.pathname) return;
+    const scrollPosition = window.scrollY + 116;
 
-      const id = topVisible.target.id;
-      const match = sections.find((s) => s.id === id);
-      updateActiveLink(match?.path ?? "/");
-    },
-    {
-      threshold: 0.5,
-      rootMargin: "-50% 0px -30% 0px",
+    let activeSectionPath = sections[0].path;
+    if (thirdSection && scrollPosition >= thirdSection.offsetTop) {
+      activeSectionPath = sections[2].path;
+    } else if (secondSection && scrollPosition >= secondSection.offsetTop) {
+      activeSectionPath = sections[1].path;
     }
-  );
 
-  sections.forEach(({ id }) => {
-    if (!id) return;
-    const el = document.getElementById(id);
-    if (el) observer.observe(el);
-  });
-
-  window.addEventListener("load", () => {
-    if (location.hash) {
-      const el = document.querySelector(location.hash);
-      el?.scrollIntoView();
+    if (
+      window.location.pathname + window.location.hash !== activeSectionPath ||
+      initial
+    ) {
+      history.replaceState(null, "", activeSectionPath);
+      updateActiveLink(activeSectionPath);
+      updateNavIndicator();
     }
-  });
+  }
+
+  window.addEventListener("scroll", () => updateStyle());
+  window.addEventListener("hashchange", () => updateStyle());
+  updateNavIndicator();
 </script>
