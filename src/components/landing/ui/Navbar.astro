@@ -127,10 +127,11 @@ const activePath = Astro.originPathname;
 
   function updateStyle(initial = false) {
     if ("/" != window.location.pathname) return;
-    const scrollPosition = window.scrollY + 116;
+    const scrollPosition = window.scrollY;
 
     let activeSectionPath = sections[0].path;
-    if (thirdSection && scrollPosition >= thirdSection.offsetTop) {
+    if (thirdSection && scrollPosition + 116 // este es el padding que le dejé a la sección (pt-29)!
+    >= thirdSection.offsetTop) { 
       activeSectionPath = sections[2].path;
     } else if (secondSection && scrollPosition >= secondSection.offsetTop) {
       activeSectionPath = sections[1].path;
