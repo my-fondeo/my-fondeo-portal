@@ -1,0 +1,25 @@
+---
+import Icon from "@components/Icon.astro";
+
+interface Props {
+  label: string;
+  subtitle?: string;
+  icon?: string;
+  bgDark?: boolean;
+}
+
+const { label, icon, bgDark, subtitle } = Astro.props;
+---
+
+<div
+  class={`flex items-center w-full z-100 h-[60px] gap-3 px-2 ${
+    bgDark ? "bg-tertiary/75 rounded-l-lg" : ""
+  } `}
+>
+  {icon && <Icon name={icon} class="text-primary w-9 aspect-square" />}
+  <div class="flex flex-col text-center max-w-16 py-1">
+    <span class="text-sm font-medium leading-tight">{label}</span>
+    {subtitle && <span class="text-xs font-light">{subtitle}</span>}
+  </div>
+  <div class="w-10"></div>
+</div>

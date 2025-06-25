@@ -1,0 +1,23 @@
+---
+import ChallengeLabelItem from "./ChallengeLabelItem.astro";
+
+const challengeLabels = [
+  { label: "Objetivo beneficios", subtitle: "Fase 1", icon: "target" },
+  { label: "Objetivo beneficios", subtitle: "Fase 2", icon: "target" },
+  { label: "Mínimo Picks", icon: "growing" },
+  { label: "Importe máximo operación", icon: 'min_vel' },
+  { label: "Importe mínimo operación", icon: 'min_vel' },
+  { label: "Perdida máxima diaria", icon: 'down_trade' },
+  { label: "Perdida máxima total", icon: 'down_trade' },
+  { label: "Tiempo limite", icon: 'clock' },
+  { label: "División de beneficios", icon: 'division' },
+];
+---
+
+<div class="my-15 mt-20 ml-auto h-full">
+  {
+    challengeLabels.map((item, index) => (
+      <ChallengeLabelItem bgDark={index % 2 == 0} {...item} />
+    ))
+  }
+</div>

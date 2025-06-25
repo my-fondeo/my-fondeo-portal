@@ -1,83 +1,107 @@
 ---
+import type { ChallengeValue } from "@interfaces/ChallengeValue";
 import ChallengeCard from "./ChallengeCardColumn";
+import ChallengeLabels from "./ChallengeLabels.astro";
+
+const defaultValues: ChallengeValue[] = [
+  {
+    key: "profitTargetPhase1",
+    type: "percentage",
+    value: 30,
+    editable: true,
+    minValue: 28,
+    maxValue: 50,
+  },
+  {
+    key: "profitTargetPhase2",
+    type: "percentage",
+    value: 25,
+    editable: true,
+    minValue: 15,
+    maxValue: 35,
+  },
+  {
+    key: "minPicks",
+    type: "amount",
+    value: 20,
+    editable: false,
+  },
+  {
+    key: "maxTradeAmount",
+    type: "percentage",
+    value: 10,
+    editable: true,
+    minValue: 10,
+    maxValue: 15,
+  },
+  {
+    key: "minTradeAmount",
+    type: "percentage",
+    value: 1,
+    editable: true,
+    minValue: 1,
+    maxValue: 2,
+  },
+  {
+    key: "maxTotalLoss",
+    type: "percentage",
+    value: 10,
+    editable: false,
+    minValue: 10,
+    maxValue: 15,
+  },
+  {
+    key: "maxDailyLoss",
+    type: "percentage",
+    value: 10,
+    editable: false,
+    minValue: 10,
+    maxValue: 15,
+  },
+  {
+    key: "timeLimit",
+    type: "days",
+    value: 30,
+    editable: true,
+    minValue: 30,
+    maxValue: 45,
+  },
+  {
+    key: "benefitDivision",
+    type: "percentage",
+    value: 80,
+    editable: true,
+    minValue: 80,
+    maxValue: 85,
+  },
+];
 ---
 
-<div class="w-full grid grid-cols-6">
-  <div></div>
+<div class="w-[125%] grid grid-cols-6 mt-12">
+  <ChallengeLabels />
   <ChallengeCard
     totalAmount={2000}
-    initialValues={[
-      {
-        key: "profitTargetPhase1",
-        type: "percentage",
-        value: 35,
-        editable: true,
-        minValue: 28,
-        maxValue: 50,
-      },
-      {
-        key: "profitTargetPhase2",
-        type: "percentage",
-        value: 25,
-        editable: true,
-        minValue: 15,
-        maxValue: 35,
-      },
-      {
-        key: "minPicks",
-        type: "amount",
-        value: 20,
-        editable: false,
-      },
-      {
-        key: "maxTradeAmount",
-        type: "percentage",
-        value: 10,
-        editable: true,
-        minValue: 10,
-        maxValue: 15,
-      },
-      {
-        key: "minTradeAmount",
-        type: "percentage",
-        value: 1,
-        editable: true,
-        minValue: 1,
-        maxValue: 2,
-      },
-      {
-        key: "maxTotalLoss",
-        type: "percentage",
-        value: 10,
-        editable: false,
-        minValue: 10,
-        maxValue: 15,
-      },
-      {
-        key: "maxDailyLoss",
-        type: "percentage",
-        value: 10,
-        editable: false,
-        minValue: 10,
-        maxValue: 15,
-      },
-      {
-        key: "timeLimit",
-        type: "days",
-        value: 30,
-        editable: true,
-        minValue: 30,
-        maxValue: 45,
-      },
-      {
-        key: "benefitDivision",
-        type: "percentage",
-        value: 80,
-        editable: true,
-        minValue: 80,
-        maxValue: 85,
-      },
-    ]}
+    initialValues={defaultValues}
+    client:visible
+  />
+  <ChallengeCard
+    totalAmount={5000}
+    initialValues={defaultValues}
+    client:visible
+  />
+  <ChallengeCard
+    totalAmount={10000}
+    initialValues={defaultValues}
+    client:visible
+  />
+  <ChallengeCard
+    totalAmount={20000}
+    initialValues={defaultValues}
+    client:visible
+  />
+  <ChallengeCard
+    totalAmount={50000}
+    initialValues={defaultValues}
     client:visible
   />
 </div>

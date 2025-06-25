@@ -36,19 +36,19 @@ export default function ChallengeCard({
   useEffect(() => {
     setCalculatedTotal(equation(values, totalAmount));
   }, [values, equation]);
-
   return (
-    <div className="bg-tertiary/40 border border-primary rounded-3xl my-15">
+    <div className="bg-tertiary/40 border border-primary rounded-3xl mb-15 mr-4">
       <div className="flex flex-col items-center">
-        <div className="h-[64px] text-center">
-          <h1 className="text-xl font-bold pt-2">
+        <div className="h-20 text-center">
+          <h1 className="text-2xl font-bold pt-2">
             {Formatter.thousandCurrency(totalAmount)}{" "}
           </h1>
-          <span className="text-sm mb-2">Capital virtual</span>
+          <span className="text-md mb-2">Capital virtual</span>
         </div>
 
         {initialValues.map((value, i) => (
           <ChallengeItem
+            borderLeftPlain={totalAmount == 2000}
             challengeValue={{
               ...value,
               setValue: (value) => {

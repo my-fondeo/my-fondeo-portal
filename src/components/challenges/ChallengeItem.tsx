@@ -7,9 +7,10 @@ interface Props {
     setValue: (value: (prev: number) => number) => void;
   };
   bgDark?: boolean;
+  borderLeftPlain?: boolean;
 }
 
-export const ChallengeItem = ({ challengeValue, bgDark }: Props) => {
+export const ChallengeItem = ({ challengeValue, bgDark, borderLeftPlain }: Props) => {
   const { key, type, value, editable, minValue, maxValue, setValue } =
     challengeValue;
 
@@ -24,14 +25,14 @@ export const ChallengeItem = ({ challengeValue, bgDark }: Props) => {
 
   return (
     <div
-      className={`flex items-center justify-between p-3 w-full z-100 ${
-        bgDark ? "bg-tertiary/75 rounded-lg" : ""
-      } `}
+      className={`flex items-center justify-between p-4 w-full z-100 ${
+        bgDark ? "bg-tertiary/75" : ""
+      } ${ borderLeftPlain ? "rounded-r-lg" : "rounded-lg"}`}
       onMouseEnter={enter}
       onMouseLeave={() => setHover(false)}
     >
       <button
-        className={`cursor-pointer bg-primary rounded-full w-5 h-5 transition-opacity delay-100 duration-200 disabled:bg-primary/20 disabled:cursor-default ${
+        className={`cursor-pointer bg-primary rounded-full w-6 h-6 transition-opacity delay-100 duration-200 disabled:bg-primary/20 disabled:cursor-default ${
           hover ? "opacity-100" : "opacity-0"
         }`}
         onClick={() => setValue((prev) => prev - 1)}
@@ -39,9 +40,9 @@ export const ChallengeItem = ({ challengeValue, bgDark }: Props) => {
       >
         -
       </button>
-      <p>{formattedValue}</p>
+      <p className="text-lg">{formattedValue}</p>
       <button
-        className={`cursor-pointer bg-primary rounded-full w-5 h-5 transition-opacity delay-100 duration-200 disabled:bg-primary/20 disabled:cursor-default ${
+        className={`cursor-pointer bg-primary rounded-full w-6 h-6 transition-opacity delay-100 duration-200 disabled:bg-primary/20 disabled:cursor-default ${
           hover ? "opacity-100" : "opacity-0"
         }`}
         onClick={() => setValue((prev) => prev + 1)}
