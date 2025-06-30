@@ -38,11 +38,8 @@ export const ChallengeItem = ({
   useEffect(() => {
     if (value && unit) {
       const changePercentage = percentageByValueKey[key] || 0;
-      console.log({ changePercentage });
       const difference = value - originalValue.value;
-      console.log({ difference, unit, originalAmount });
       const charge = (difference / unit!) * changePercentage * originalAmount;
-      console.log({ charge });
       setOffset(charge);
     }
   }, [value]);

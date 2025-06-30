@@ -12,12 +12,14 @@ interface EquationProps {
   totalAmount: number;
   cost: number;
   initialValues: ChallengeValue[];
+  discount: number;
 }
 
 const defaultEquation = ({
   values,
   totalAmount,
   cost,
+  discount,
   initialValues,
 }: EquationProps) => {
   const profitTargetPhase1 =
@@ -59,10 +61,11 @@ const defaultEquation = ({
     const valueFind = values.find((v) => v.key === key);
     const unit = valueFind?.unit;
     const changePercentage = percentageByValueKey[key] || 0;
-    charge += (difference / (unit || 1)) * changePercentage * (cost || 0);
+    charge +=
+      (difference / (unit || 1)) * changePercentage * ((cost || 0) - discount);
   });
 
-  return cost + charge;
+  return cost - discount + charge;
 };
 
 interface Props {
@@ -81,7 +84,13 @@ export default function ChallengeCard({
   equation = defaultEquation,
 }: Props) {
   const [calculatedTotal, setCalculatedTotal] = useState<number>(() =>
-    equation({ initialValues, totalAmount, cost, values: initialValues })
+    equation({
+      initialValues,
+      totalAmount,
+      cost,
+      values: initialValues,
+      discount,
+    })
   );
 
   const [values, setValues] = useState<ChallengeValue[]>(
@@ -89,7 +98,9 @@ export default function ChallengeCard({
   );
 
   useEffect(() => {
-    setCalculatedTotal(equation({ initialValues, totalAmount, cost, values }));
+    setCalculatedTotal(
+      equation({ initialValues, totalAmount, cost, values, discount })
+    );
   }, [values, equation]);
   return (
     <div className="bg-tertiary/40 border border-primary rounded-3xl mb-15 mr-4">
@@ -110,7 +121,13 @@ export default function ChallengeCard({
                 const newValues = [...prev];
                 newValues[i].value = value(prev[i].value);
                 setCalculatedTotal(
-                  equation({ initialValues, totalAmount, cost, values })
+                  equation({
+                    initialValues,
+                    totalAmount,
+                    cost,
+                    values,
+                    discount,
+                  })
                 );
                 return newValues;
               });
@@ -118,7 +135,7 @@ export default function ChallengeCard({
             key={i}
             bgDark={i % 2 == 0}
             originalValue={initialValues[i]}
-            originalAmount={cost}
+            originalAmount={cost - discount}
           />
         ))}
 

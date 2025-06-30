@@ -47,12 +47,12 @@ export interface ChallengeTableColumnData {
 // 25 minPicks = -6% de la tarifa original
 // 15 minPicks = +6% de la tarifa original
 export const percentageByValueKey: Record<string, any> = {
-  profitTargetPhase1: -.06,
-  minPicks: -.06,
-  maxTradeAmount: .06,
-  maxDailyLoss: .15,
-  maxTotalLoss: .15,
-  timeLimit: .06,
+  profitTargetPhase1: -.12,
+  minPicks: -.12,
+  maxTradeAmount: .12,
+  maxDailyLoss: .3,
+  maxTotalLoss: .3,
+  timeLimit: .12,
   benefitDivision: .3,
 }
 
