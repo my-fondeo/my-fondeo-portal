@@ -9,22 +9,24 @@ const defaultValues: ChallengeValue[] = [
     type: "percentage",
     value: 30,
     editable: true,
-    minValue: 28,
-    maxValue: 50,
+    minValue: 22.5,
+    maxValue: 45,
+    unit: 7.5,
   },
   {
     key: "profitTargetPhase2",
     type: "percentage",
     value: 25,
-    editable: true,
-    minValue: 15,
-    maxValue: 35,
+    editable: false,
   },
   {
     key: "minPicks",
     type: "amount",
     value: 20,
-    editable: false,
+    editable: true,
+    minValue: 15,
+    maxValue: 30,
+    unit: 5,
   },
   {
     key: "maxTradeAmount",
@@ -33,14 +35,22 @@ const defaultValues: ChallengeValue[] = [
     editable: true,
     minValue: 10,
     maxValue: 15,
+    unit: 2.5,
   },
   {
     key: "minTradeAmount",
     type: "percentage",
     value: 1,
-    editable: true,
-    minValue: 1,
-    maxValue: 2,
+    editable: false,
+  },
+  {
+    key: "maxDailyLoss",
+    type: "percentage",
+    value: 10,
+    editable: false,
+    minValue: 7.5,
+    maxValue: 15,
+    unit: 2.5,
   },
   {
     key: "maxTotalLoss",
@@ -48,31 +58,26 @@ const defaultValues: ChallengeValue[] = [
     value: 10,
     editable: false,
     minValue: 10,
-    maxValue: 15,
-  },
-  {
-    key: "maxDailyLoss",
-    type: "percentage",
-    value: 10,
-    editable: false,
-    minValue: 10,
-    maxValue: 15,
+    maxValue: 25,
+    unit: 5,
   },
   {
     key: "timeLimit",
     type: "days",
     value: 30,
     editable: true,
-    minValue: 30,
-    maxValue: 45,
+    minValue: 25,
+    maxValue: 35,
+    unit: 5,
   },
   {
     key: "benefitDivision",
     type: "percentage",
     value: 80,
     editable: true,
-    minValue: 80,
-    maxValue: 85,
+    minValue: 70,
+    maxValue: 90,
+    unit: 10,
   },
 ];
 ---
@@ -82,26 +87,36 @@ const defaultValues: ChallengeValue[] = [
   <ChallengeCard
     totalAmount={2000}
     initialValues={defaultValues}
+    cost={80}
+    discount={15}
     client:visible
   />
   <ChallengeCard
     totalAmount={5000}
     initialValues={defaultValues}
+    cost={150}
+    discount={35}
     client:visible
   />
   <ChallengeCard
     totalAmount={10000}
     initialValues={defaultValues}
+    cost={560}
+    discount={61}
     client:visible
   />
   <ChallengeCard
     totalAmount={20000}
     initialValues={defaultValues}
+    cost={700}
+    discount={71}
     client:visible
   />
   <ChallengeCard
     totalAmount={50000}
     initialValues={defaultValues}
+    cost={1250}
+    discount={101}
     client:visible
   />
 </div>

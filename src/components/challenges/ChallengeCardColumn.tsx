@@ -1,40 +1,95 @@
-import type { ChallengeData, ChallengeValue } from "@interfaces/ChallengeValue";
+import {
+  percentageByValueKey,
+  type ChallengeData,
+  type ChallengeValue,
+} from "@interfaces/ChallengeValue";
 import { Formatter } from "@util/formatter";
 import { useEffect, useState } from "react";
 import { ChallengeItem } from "./ChallengeItem";
 
-const defaultEquation = (values: ChallengeValue[], totalAmount: number) => {
-  const benefits1 = values.find((v) => v.key === "profitTargetPhase1");
-  const benefits2 = values.find((v) => v.key === "profitTargetPhase2");
+interface EquationProps {
+  values: ChallengeValue[];
+  totalAmount: number;
+  cost: number;
+  initialValues: ChallengeValue[];
+}
 
-  if (!benefits1 || !benefits2) {
-    console.error("No se envia toda la data en values: ", values);
-    return 0;
-  }
+const defaultEquation = ({
+  values,
+  totalAmount,
+  cost,
+  initialValues,
+}: EquationProps) => {
+  const profitTargetPhase1 =
+    values.find((v) => v.key === "profitTargetPhase1")!.value -
+    initialValues.find((v) => v.key === "profitTargetPhase1")!.value;
+  const minPicks =
+    values.find((v) => v.key === "minPicks")!.value -
+    initialValues.find((v) => v.key === "minPicks")!.value;
+  const maxTradeAmount =
+    values.find((v) => v.key === "maxTradeAmount")!.value -
+    initialValues.find((v) => v.key === "maxTradeAmount")!.value;
+  const maxDailyLoss =
+    values.find((v) => v.key === "maxDailyLoss")!.value -
+    initialValues.find((v) => v.key === "maxDailyLoss")!.value;
+  const maxTotalLoss =
+    values.find((v) => v.key === "maxTotalLoss")!.value -
+    initialValues.find((v) => v.key === "maxTotalLoss")!.value;
+  const timeLimit =
+    values.find((v) => v.key === "timeLimit")!.value -
+    initialValues.find((v) => v.key === "timeLimit")!.value;
+  const benefitDivision =
+    values.find((v) => v.key === "benefitDivision")!.value -
+    initialValues.find((v) => v.key === "benefitDivision")!.value;
 
-  return benefits1?.value + benefits2?.value + totalAmount || 0;
+  const changedValues: any = {};
+
+  if (profitTargetPhase1) changedValues.profitTargetPhase1 = profitTargetPhase1;
+  if (minPicks) changedValues.minPicks = minPicks;
+  if (maxTradeAmount) changedValues.maxTradeAmount = maxTradeAmount;
+  if (maxDailyLoss) changedValues.maxDailyLoss = maxDailyLoss;
+  if (maxTotalLoss) changedValues.maxTotalLoss = maxTotalLoss;
+  if (timeLimit) changedValues.timeLimit = timeLimit;
+  if (benefitDivision) changedValues.benefitDivision = benefitDivision;
+
+  let charge = 0;
+
+  Object.keys(changedValues).forEach((key) => {
+    const difference = changedValues[key];
+    const valueFind = values.find((v) => v.key === key);
+    const unit = valueFind?.unit;
+    const changePercentage = percentageByValueKey[key] || 0;
+    charge += (difference / (unit || 1)) * changePercentage * (cost || 0);
+  });
+
+  return cost + charge;
 };
+
 interface Props {
   totalAmount: number; // MONTO A FONDEAR
   initialValues: ChallengeValue[];
-  discount?: number;
-  equation?: (values: ChallengeValue[], totalAmount: number) => number;
+  cost: number;
+  discount: number;
+  equation?: (value: EquationProps) => number;
 }
 
 export default function ChallengeCard({
   totalAmount, // FONDEO
   initialValues,
   discount = 0,
+  cost,
   equation = defaultEquation,
 }: Props) {
   const [calculatedTotal, setCalculatedTotal] = useState<number>(() =>
-    equation(initialValues, totalAmount)
+    equation({ initialValues, totalAmount, cost, values: initialValues })
   );
 
-  const [values, setValues] = useState<ChallengeValue[]>(initialValues);
+  const [values, setValues] = useState<ChallengeValue[]>(
+    initialValues.map((v) => ({ ...v }))
+  );
 
   useEffect(() => {
-    setCalculatedTotal(equation(values, totalAmount));
+    setCalculatedTotal(equation({ initialValues, totalAmount, cost, values }));
   }, [values, equation]);
   return (
     <div className="bg-tertiary/40 border border-primary rounded-3xl mb-15 mr-4">
@@ -46,31 +101,33 @@ export default function ChallengeCard({
           <span className="text-md mb-2">Capital virtual</span>
         </div>
 
-        {initialValues.map((value, i) => (
+        {values.map((value, i) => (
           <ChallengeItem
             borderLeftPlain={totalAmount == 2000}
-            challengeValue={{
-              ...value,
-              setValue: (value) => {
-                setValues((prev) => {
-                  const newValues = [...prev];
-                  newValues[i].value = value(prev[i].value);
-                  setCalculatedTotal(equation(newValues, totalAmount));
-                  return newValues;
-                });
-              },
+            challengeValue={value}
+            setValue={(value) => {
+              setValues((prev) => {
+                const newValues = [...prev];
+                newValues[i].value = value(prev[i].value);
+                setCalculatedTotal(
+                  equation({ initialValues, totalAmount, cost, values })
+                );
+                return newValues;
+              });
             }}
             key={i}
             bgDark={i % 2 == 0}
+            originalValue={initialValues[i]}
+            originalAmount={cost}
           />
         ))}
 
         <div className="p-5">
           <span className="text-lg mr-2">
-            {Formatter.currency(calculatedTotal)}
+            {Formatter.currency(calculatedTotal - discount)}
           </span>
           <span className="text-sm line-through">
-            {Formatter.currency(calculatedTotal + 15)}
+            {Formatter.currency(calculatedTotal)}
           </span>
         </div>
 

@@ -13,12 +13,12 @@ export interface ChallengeValueVariable {
 
 export interface ChallengeValueVariableRegular
   extends ChallengeValueVariable {
-    maxDailyLoss: number
+  maxDailyLoss: number
 }
 
 export interface ChallengeValueVariablePro
   extends ChallengeValueVariable {
-    dailyProfitLimit: number
+  dailyProfitLimit: number
 }
 
 export type ChallengeData = ChallengeValueVariableRegular & ChallengeValueVariablePro;
@@ -29,6 +29,7 @@ export interface ChallengeValue {
   type: formatType;
   key: keyof ChallengeData;
   value: number;
+  unit?: number;
   editable?: boolean;
   minValue?: number;
   maxValue?: number;
@@ -37,6 +38,22 @@ export interface ChallengeValue {
 
 export interface ChallengeTableColumnData {
   values: ChallengeValue[];
+}
+
+// Estos son los porcentajes de AUMENTO de la tarifa por cada unidad (unit) que AUMENTA el usuario.
+// Ejemplo: 
+// UNIT de minPicks = 5, inicial = 20
+// Percentage de minPicks = -6%
+// 25 minPicks = -6% de la tarifa original
+// 15 minPicks = +6% de la tarifa original
+export const percentageByValueKey: Record<string, any> = {
+  profitTargetPhase1: -.06,
+  minPicks: -.06,
+  maxTradeAmount: .06,
+  maxDailyLoss: .15,
+  maxTotalLoss: .15,
+  timeLimit: .06,
+  benefitDivision: .3,
 }
 
 
