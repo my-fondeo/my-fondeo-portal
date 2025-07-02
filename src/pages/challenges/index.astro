@@ -1,38 +1,9 @@
 ---
-import ChallengesTable from "@components/challenges/ChallengesTable.astro";
-import ChallengeCardLanding from "@components/landing/ChallengeCardLanding.astro";
+import { Challenges } from "@components/challenges/Challenges";
+import { ChallengeCardLanding } from "@components/landing/ChallengeCardLanding";
 import LandingLayout from "@layouts/LandingLayout.astro";
 ---
 
 <LandingLayout>
-  <div class="flex flex-col items-center">
-    <div data-aos="fade-right">
-      <h1 class="text-5xl font-bold">Desafío de Trading Deportivo.</h1>
-      <h3 class="text-3xl font-semibold">En tus términos.</h3>
-      <span class="block text-[1.5rem] mt-2 font-normal"
-        ><strong>¿Más accesible o más intenso?</strong> ¡Adapta nuestro Desafío MyFondeo
-        a tu nivel!</span
-      >
-    </div>
-    <div class="flex justify-center items-center gap-10 mt-28">
-      <ChallengeCardLanding
-        items={[
-          "Evaluación tradicional",
-          "Perdida máxima diaria",
-          "Customizables",
-          "Objetivo fase 2 más bajo",
-        ]}
-        popular
-      />
-      <ChallengeCardLanding
-        items={[
-          "Sin perdida máxima diaria",
-          "Limite beneficio diario",
-          "Más asequibles",
-          "Objetivo beneficio más bajo",
-        ]}
-      />
-    </div>
-    <ChallengesTable />
-  </div>
+  <Challenges client:only />
 </LandingLayout>

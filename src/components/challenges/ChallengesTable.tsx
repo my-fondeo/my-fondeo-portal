@@ -1,7 +1,6 @@
----
 import type { ChallengeValue } from "@interfaces/ChallengeValue";
 import ChallengeCard from "./ChallengeCardColumn";
-import ChallengeLabels from "./ChallengeLabels.astro";
+import ChallengeLabels from "./ChallengeLabels.tsx";
 
 const defaultValues: ChallengeValue[] = [
   {
@@ -80,43 +79,49 @@ const defaultValues: ChallengeValue[] = [
     unit: 10,
   },
 ];
----
 
-<div class="w-[125%] grid grid-cols-6 mt-12">
-  <ChallengeLabels />
-  <ChallengeCard
-    totalAmount={2000}
-    initialValues={defaultValues}
-    cost={80}
-    discount={15}
-    client:visible
-  />
-  <ChallengeCard
-    totalAmount={5000}
-    initialValues={defaultValues}
-    cost={150}
-    discount={35}
-    client:visible
-  />
-  <ChallengeCard
-    totalAmount={10000}
-    initialValues={defaultValues}
-    cost={560}
-    discount={61}
-    client:visible
-  />
-  <ChallengeCard
-    totalAmount={20000}
-    initialValues={defaultValues}
-    cost={700}
-    discount={71}
-    client:visible
-  />
-  <ChallengeCard
-    totalAmount={50000}
-    initialValues={defaultValues}
-    cost={1250}
-    discount={101}
-    client:visible
-  />
-</div>
+const challenges = [
+  {
+    totalAmount: 2000,
+    cost: 80,
+    discount: 15,
+  },
+  {
+    totalAmount: 5000,
+    cost: 150,
+    discount: 35,
+  },
+  {
+    totalAmount: 10000,
+    cost: 560,
+    discount: 61,
+  },
+  {
+    totalAmount: 20000,
+    cost: 700,
+    discount: 71,
+  },
+  {
+    totalAmount: 50000,
+    cost: 1250,
+    discount: 101,
+  },
+];
+
+export const ChallengesTable = () => {
+  return (
+    <div className="w-[125%] grid grid-cols-6 mt-12">
+      <ChallengeLabels />
+
+      {challenges.map(({ cost, discount, totalAmount }) => (
+        <ChallengeCard
+          key={totalAmount}
+          totalAmount={totalAmount}
+          initialValues={defaultValues}
+          cost={cost}
+          discount={discount}
+        />
+      ))}
+    </div>
+  );
+};

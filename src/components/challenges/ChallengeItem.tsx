@@ -1,3 +1,4 @@
+import { useProLanding } from "@core/store/landing/challengeType";
 import {
   percentageByValueKey,
   type ChallengeValue,
@@ -12,6 +13,7 @@ interface Props {
   borderLeftPlain?: boolean;
   originalValue: ChallengeValue;
   originalAmount: number;
+  disableDecreaseCost: boolean;
 }
 
 export const ChallengeItem = ({
@@ -21,6 +23,7 @@ export const ChallengeItem = ({
   setValue,
   originalValue,
   originalAmount,
+  disableDecreaseCost = false,
 }: Props) => {
   const { key, type, value, editable, minValue, maxValue, unit } =
     challengeValue;
@@ -44,11 +47,23 @@ export const ChallengeItem = ({
     }
   }, [value]);
 
+  const { isEnabled } = useProLanding();
+  const colors = !isEnabled
+    ? bgDark
+      ? "bg-tertiary/75"
+      : ""
+    : bgDark
+    ? "bg-amber-300/75"
+    : "";
+
+  // Si suma a la tarifa al aumentar el valor
+  const isPositiveCharge = percentageByValueKey[key] > 0;
+
   return (
     <div
-      className={`flex items-center justify-between px-2 py-4 w-full z-100 relative- ${
-        bgDark ? "bg-tertiary/75" : ""
-      } ${borderLeftPlain ? "rounded-r-lg" : "rounded-lg"}`}
+      className={`transition-colors flex items-center justify-between px-2 py-4 w-full z-100 relative- ${colors} ${
+        borderLeftPlain ? "rounded-r-lg" : "rounded-lg"
+      }`}
       onMouseEnter={enter}
       onMouseLeave={() => setHover(false)}
     >
@@ -57,7 +72,11 @@ export const ChallengeItem = ({
           hover ? "opacity-100" : "opacity-0"
         }`}
         onClick={() => setValue((prev) => prev - unit!)}
-        disabled={!editable || value <= (minValue || 0)}
+        disabled={
+          (isPositiveCharge && disableDecreaseCost) ||
+          !editable ||
+          value <= (minValue || 0)
+        }
       >
         -
       </button>
@@ -86,7 +105,11 @@ export const ChallengeItem = ({
           hover ? "opacity-100" : "opacity-0"
         }`}
         onClick={() => setValue((prev) => prev + unit!)}
-        disabled={!editable || value >= (maxValue || 0)}
+        disabled={
+          (!isPositiveCharge && disableDecreaseCost) ||
+          !editable ||
+          value >= (maxValue || 0)
+        }
       >
         +
       </button>

@@ -11,7 +11,6 @@ import TextListItem from "@components/landing/TextListItem.astro";
 import BenefitCard from "@components/landing/BenefitCard.astro";
 import StepCard from "@components/landing/StepCard.astro";
 import { getCollection } from "astro:content";
-import ChallengeCardLanding from "@components/landing/ChallengeCardLanding.astro";
 import UsersOpinionsCarrousel from "@components/landing/UsersOpinionsCarrousel.tsx";
 import FAQS from "@components/landing/faqs/FAQs.astro";
 
@@ -219,7 +218,7 @@ if (!opinionsCollection || !stepsCollection) return null;
 
   <div class="flex flex-col items-center pt-29" id="FAQ">
     <div class="w-[150%] grid grid-cols-[35%_55%] gap-[10%] pb-32">
-      <div data-aos="fade-right" data-aos-mirror="true" data-aos-offset="500" > 
+      <div data-aos="fade-right" data-aos-mirror="true" data-aos-offset="500">
         <h1 class="text-5xl text-primary-text font-bold">
           Despeja tus dudas <br />
           <span class="text-primary">(al instante)</span>
@@ -232,10 +231,16 @@ if (!opinionsCollection || !stepsCollection) return null;
 
   <div class="pl-5 grid grid-cols-[60%_40%]">
     <div>
-      <span class="text-4xl text-primary-text font-semibold mt-2">Convierte tu conocimiento deportivo en</span> <br>
+      <span class="text-4xl text-primary-text font-semibold mt-2"
+        >Convierte tu conocimiento deportivo en</span
+      >
+      <br />
       <span class="text-7xl text-primary font-bold">Ingresos reales</span>
 
-      <button class="btn bg-white text-secondary ml-4 mt-32" style="padding: 1rem 3rem;">
+      <button
+        class="btn bg-white text-secondary ml-4 mt-32"
+        style="padding: 1rem 3rem;"
+      >
         Quiero Empezar
       </button>
     </div>

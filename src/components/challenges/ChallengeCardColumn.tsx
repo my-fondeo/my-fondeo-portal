@@ -6,10 +6,10 @@ import {
 import { Formatter } from "@util/formatter";
 import { useEffect, useState } from "react";
 import { ChallengeItem } from "./ChallengeItem";
+import { useProLanding } from "@core/store/landing/challengeType";
 
 interface EquationProps {
   values: ChallengeValue[];
-  totalAmount: number;
   cost: number;
   initialValues: ChallengeValue[];
   discount: number;
@@ -17,7 +17,6 @@ interface EquationProps {
 
 const defaultEquation = ({
   values,
-  totalAmount,
   cost,
   discount,
   initialValues,
@@ -86,24 +85,28 @@ export default function ChallengeCard({
   const [calculatedTotal, setCalculatedTotal] = useState<number>(() =>
     equation({
       initialValues,
-      totalAmount,
       cost,
       values: initialValues,
       discount,
     })
   );
 
+  const { isEnabled } = useProLanding();
+
   const [values, setValues] = useState<ChallengeValue[]>(
     initialValues.map((v) => ({ ...v }))
   );
 
   useEffect(() => {
-    setCalculatedTotal(
-      equation({ initialValues, totalAmount, cost, values, discount })
-    );
+    setCalculatedTotal(equation({ initialValues, cost, values, discount }));
   }, [values, equation]);
+
   return (
-    <div className="bg-tertiary/40 border border-primary rounded-3xl mb-15 mr-4">
+    <div
+      className={`${
+        isEnabled ? "bg-yellow-300/50" : "bg-tertiary/40"
+      } transition-colors border border-primary rounded-3xl mb-15 mr-4`}
+    >
       <div className="flex flex-col items-center">
         <div className="h-20 text-center">
           <h1 className="text-2xl font-bold pt-2">
@@ -123,7 +126,6 @@ export default function ChallengeCard({
                 setCalculatedTotal(
                   equation({
                     initialValues,
-                    totalAmount,
                     cost,
                     values,
                     discount,
@@ -136,6 +138,15 @@ export default function ChallengeCard({
             bgDark={i % 2 == 0}
             originalValue={initialValues[i]}
             originalAmount={cost - discount}
+            disableDecreaseCost={
+              equation({
+                initialValues,
+                cost,
+                values,
+                discount,
+              }) <=
+              (cost - discount) * 0.75
+            }
           />
         ))}
 
@@ -148,7 +159,9 @@ export default function ChallengeCard({
           </span>
         </div>
 
-        <button className="btn text-secondary bg-primary border-none font-semibold text-sm my-[-1rem]">
+        <button 
+          className={`btn transition-colors  bg-primary border-none font-semibold text-sm my-[-1rem]`}
+        >
           Empezar ahora
         </button>
       </div>
