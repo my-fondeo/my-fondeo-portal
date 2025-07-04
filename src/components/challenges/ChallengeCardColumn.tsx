@@ -33,7 +33,7 @@ const defaultEquation = ({
     values.find((v) => v.key === "maxTradeAmount")!.value -
     initialValues.find((v) => v.key === "maxTradeAmount")!.value;
   const maxDailyLoss =
-    values.find((v) => v.key === "maxDailyLoss")!.value -
+    values.find((v) => v.key === "maxDailyLoss")?.value || 0 -
     initialValues.find((v) => v.key === "maxDailyLoss")!.value;
   const maxTotalLoss =
     values.find((v) => v.key === "maxTotalLoss")!.value -
@@ -86,18 +86,23 @@ export default function ChallengeCard({
 }: Props) {
   const { isEnabled } = useProLanding();
   equation = isEnabled ? () => cost : equation;
-  const [calculatedTotal, setCalculatedTotal] = useState<number>(() =>
-    equation({
-      initialValues,
-      cost,
-      values: initialValues,
-      discount,
-    })
-  );
 
   const [values, setValues] = useState<ChallengeValue[]>(
     initialValues.map((v) => ({ ...v }))
   );
+
+  const [calculatedTotal, setCalculatedTotal] = useState<number>(() =>
+    equation({
+      initialValues,
+      cost,
+      values,
+      discount,
+    })
+  );
+
+  useEffect(() => {
+    setValues(initialValues.map((v) => ({ ...v })));
+  }, [initialValues]);
 
   useEffect(() => {
     setCalculatedTotal(equation({ initialValues, cost, values, discount }));

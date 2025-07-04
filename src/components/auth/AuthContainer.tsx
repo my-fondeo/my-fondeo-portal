@@ -24,22 +24,22 @@ export const AuthContainer = () => {
   return (
     <div className="flex flex-col items-center justify-start bg-bg w-full h-full rounded-l-2xl p-6">
       <div className="bg-secondary rounded-lg flex items-center h-14 px-8 gap-16 relative">
-        <a
+        <span
           className={`flex items-center cursor-pointer font-bold z-100 text-lg h-[80%] ${
             isLogin ? "text-secondary" : ""
           }`}
-          href="#login"
+          onClick={() => window.location.replace("#login")}
         >
           Ingresar
-        </a>
-        <a
+        </span>
+        <span
           className={`flex items-center cursor-pointer font-bold z-100 text-lg h-[80%] ${
             !isLogin ? "text-secondary" : ""
           }`}
-          href="#register"
+          onClick={() => window.location.replace("#register")}
         >
           Registro
-        </a>
+        </span>
         <div
           className={`bg-primary font-bold h-[80%] w-30 rounded-xl absolute transition-all ease-in duration-150 ${
             isLogin ? "left-3" : "left-38"

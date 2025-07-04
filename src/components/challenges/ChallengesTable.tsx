@@ -81,6 +81,63 @@ const defaultValues: ChallengeValue[] = [
   },
 ];
 
+const defaultProValues: ChallengeValue[] = [
+  {
+    key: "profitTargetPhase1",
+    type: "percentage",
+    value: 45,
+    editable: false,
+  },
+  {
+    key: "profitTargetPhase2",
+    type: "percentage",
+    value: 30,
+    editable: false,
+  },
+  {
+    key: "minPicks",
+    type: "amount",
+    value: 30,
+    editable: false,
+  },
+  {
+    key: "maxTradeAmount",
+    type: "percentage",
+    value: 8,
+    editable: false,
+  },
+  {
+    key: "minTradeAmount",
+    type: "percentage",
+    value: 1,
+    editable: false,
+  },
+  {
+    key: "dailyProfitLimit",
+    type: "percentage",
+    value: 5,
+    editable: false,
+  },
+  {
+    key: "maxTotalLoss",
+    type: "percentage",
+    value: 15,
+    editable: false,
+  },
+  {
+    key: "timeLimit",
+    type: "days",
+    value: 25,
+    editable: false,
+  },
+  {
+    key: "benefitDivision",
+    type: "percentage",
+    value: 80,
+    editable: false,
+  },
+];
+
 const challenges = [
   {
     totalAmount: 2000,
@@ -125,15 +182,17 @@ export const ChallengesTable = () => {
     <div className="w-[125%] grid grid-cols-6 mt-12">
       <ChallengeLabels />
 
-      {challenges.map(({ cost, discount, totalAmount, proCost, proDiscount }) => (
-        <ChallengeCard
-          key={totalAmount}
-          totalAmount={totalAmount}
-          initialValues={defaultValues}
-          cost={isEnabled ? proCost : cost}
-          discount={isEnabled ? proDiscount : discount} 
-        />
-      ))}
+      {challenges.map(
+        ({ cost, discount, totalAmount, proCost, proDiscount }) => (
+          <ChallengeCard
+            key={totalAmount}
+            totalAmount={totalAmount}
+            initialValues={isEnabled ? defaultProValues : defaultValues}
+            cost={isEnabled ? proCost : cost}
+            discount={isEnabled ? proDiscount : discount}
+          />
+        )
+      )}
     </div>
   );
 };

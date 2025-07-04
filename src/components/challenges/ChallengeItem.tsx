@@ -49,7 +49,6 @@ export const ChallengeItem = ({
     }
   }, [value]);
 
-  
   const colors = !isEnabled
     ? bgDark
       ? "bg-tertiary/75"

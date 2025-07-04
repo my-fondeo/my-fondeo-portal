@@ -13,11 +13,11 @@ const ChallengeLabels = () => {
   const { isEnabled } = useProLanding();
   const item = isEnabled
     ? {
-        label: "Perdida máxima diaria",
+        label: "Limite Beneficio diario",
         icon: downTradeIcon,
       }
     : {
-        label: "Limite Beneficio diario",
+        label: "Perdida máxima diaria",
         icon: downTradeIcon,
       };
 
