@@ -28,6 +28,8 @@ export const ChallengeItem = ({
   const { key, type, value, editable, minValue, maxValue, unit } =
     challengeValue;
 
+  const { isEnabled } = useProLanding();
+
   const [hover, setHover] = useState(false);
   const [offset, setOffset] = useState(0);
 
@@ -47,7 +49,7 @@ export const ChallengeItem = ({
     }
   }, [value]);
 
-  const { isEnabled } = useProLanding();
+  
   const colors = !isEnabled
     ? bgDark
       ? "bg-tertiary/75"
@@ -73,6 +75,7 @@ export const ChallengeItem = ({
         }`}
         onClick={() => setValue((prev) => prev - unit!)}
         disabled={
+          isEnabled ||
           (isPositiveCharge && disableDecreaseCost) ||
           !editable ||
           value <= (minValue || 0)
@@ -106,6 +109,7 @@ export const ChallengeItem = ({
         }`}
         onClick={() => setValue((prev) => prev + unit!)}
         disabled={
+          isEnabled ||
           (!isPositiveCharge && disableDecreaseCost) ||
           !editable ||
           value >= (maxValue || 0)

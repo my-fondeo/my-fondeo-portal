@@ -21,6 +21,8 @@ const defaultEquation = ({
   discount,
   initialValues,
 }: EquationProps) => {
+  if (useProLanding.getState().isEnabled) return cost;
+
   const profitTargetPhase1 =
     values.find((v) => v.key === "profitTargetPhase1")!.value -
     initialValues.find((v) => v.key === "profitTargetPhase1")!.value;
@@ -82,6 +84,8 @@ export default function ChallengeCard({
   cost,
   equation = defaultEquation,
 }: Props) {
+  const { isEnabled } = useProLanding();
+  equation = isEnabled ? () => cost : equation;
   const [calculatedTotal, setCalculatedTotal] = useState<number>(() =>
     equation({
       initialValues,
@@ -90,8 +94,6 @@ export default function ChallengeCard({
       discount,
     })
   );
-
-  const { isEnabled } = useProLanding();
 
   const [values, setValues] = useState<ChallengeValue[]>(
     initialValues.map((v) => ({ ...v }))
@@ -159,7 +161,7 @@ export default function ChallengeCard({
           </span>
         </div>
 
-        <button 
+        <button
           className={`btn transition-colors  bg-primary border-none font-semibold text-sm my-[-1rem]`}
         >
           Empezar ahora
