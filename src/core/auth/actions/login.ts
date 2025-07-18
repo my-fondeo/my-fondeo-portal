@@ -15,7 +15,6 @@ export interface AuthResponse {
 export const authCheckStatus = async () => {
   try {
     const token = authApi.defaults.headers.common['Authorization'];
-    console.log({ token })
     if (!token) {
       return null;
     }
@@ -57,7 +56,6 @@ export const checkUserExistence = async ({ email, phone }: { email: string, phon
     return data;
   }
   catch (e: any) {
-    console.error(e.response.data)
     return null;
   }
 }

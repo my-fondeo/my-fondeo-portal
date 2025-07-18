@@ -15,7 +15,6 @@ export const onRequest = defineMiddleware((context, next) => {
   // En el auth se verifica si hay token y lo envía a app
   // En app se valida el token y si algo no está bien, se elimina y vuelve al auth
   
-  console.log({pathname, token})
   if (pathname === '/auth' && token) {
     return Response.redirect(new URL('/app', context.url), 302);
   }
