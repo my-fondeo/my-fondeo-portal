@@ -1,7 +1,7 @@
 import type { ChallengeValue } from "@interfaces/ChallengeValue";
 import ChallengeCard from "./ChallengeCardColumn";
 import ChallengeLabels from "./ChallengeLabels.tsx";
-import { useProLanding } from "@core/store/landing/challengeType.ts";
+import { useProLanding } from "@core/landing/store/challengeType";
 
 const defaultValues: ChallengeValue[] = [
   {

@@ -1,7 +1,7 @@
 import { ChallengeCardLanding } from "@components/landing/ChallengeCardLanding";
 import { ChallengesTable } from "./ChallengesTable";
 import { useState } from "react";
-import { useProLanding } from "@core/store/landing/challengeType";
+import { useProLanding } from "@core/landing/store/challengeType";
 
 export const Challenges = () => {
   const [proActivate, setProActivate] = useState(false);

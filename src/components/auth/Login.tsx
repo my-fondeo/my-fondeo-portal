@@ -1,38 +1,58 @@
-import { useForm } from "@hooks/useForm";
+import { emailFormOptions, passwordValidators } from "@util/form/errors";
 import { Input } from "./ui/Input";
+import { actions } from "astro:actions";
+import { useForm } from "react-hook-form";
+import { Notyf } from 'notyf';
+
+const notyf = new Notyf({ position: { x: "center", y: "center" } });
+
+type FormData = {
+  email: string;
+  password: string;
+};
 
 const Login = () => {
-  const { formValues: authForm, handleInputChange } = useForm({
-    email: "",
-    password: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<FormData>();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(authForm);
+  const onSubmit = async ({ email, password }: FormData) => {
+    const {data, error} = await actions.login({
+      email,
+      password,
+    });
+
+    if (error) notyf.error(error.message || "Error al iniciar sesión");
+    if (data) window.location.href = "/app";
   };
 
   return (
-    <div className="text-secondary w-full md:w-[80%]">
+    <form
+      className="text-secondary w-full md:w-[80%]"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <p className="mt-10 mb-5 font-medium h-12">
         Bienvenido de vuelta. <br /> Tu próximo movimiento te espera.
       </p>
       <h1 className="text-5xl">Ingresa</h1>
 
       <Input
-        value={authForm.email}
-        onChange={handleInputChange}
         label="Correo electrónico"
         placeholder="example@email.com"
-        name="email"
         className="mt-7"
+        error={errors.email?.message}
+        {...register("email", emailFormOptions)}
       />
       <Input
-        value={authForm.password}
-        onChange={handleInputChange}
         label="Contraseña"
-        name="password"
         passInput
         className="mt-2"
+        {...register("password", {
+          required: "Contraseña requerida.",
+          validate: { ...passwordValidators },
+        })}
       />
       <button className="mt-6 py-3 px-10 bg-quaternary text-primary-text cursor-pointer rounded-xl">
         Ingresar
@@ -44,7 +64,7 @@ const Login = () => {
           Regístrate
         </a>
       </p>
-    </div>
+    </form>
   );
 };
 

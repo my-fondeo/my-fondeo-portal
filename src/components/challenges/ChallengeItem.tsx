@@ -1,4 +1,4 @@
-import { useProLanding } from "@core/store/landing/challengeType";
+import { useProLanding } from "@core/landing/store/challengeType";
 import {
   percentageByValueKey,
   type ChallengeValue,

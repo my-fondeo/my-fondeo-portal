@@ -7,7 +7,7 @@ import minVelIcon from "../../assets/icon/min_vel.svg?react";
 import downTradeIcon from "../../assets/icon/down_trade.svg?react";
 import clockIcon from "../../assets/icon/clock.svg?react";
 import divisionIcon from "../../assets/icon/division.svg?react";
-import { useProLanding } from "@core/store/landing/challengeType.ts";
+import { useProLanding } from "@core/landing/store/challengeType.js";
 
 const ChallengeLabels = () => {
   const { isEnabled } = useProLanding();

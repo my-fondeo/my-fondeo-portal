@@ -6,7 +6,7 @@ import {
 import { Formatter } from "@util/formatter";
 import { useEffect, useState } from "react";
 import { ChallengeItem } from "./ChallengeItem";
-import { useProLanding } from "@core/store/landing/challengeType";
+import { useProLanding } from "@core/landing/store/challengeType";
 
 interface EquationProps {
   values: ChallengeValue[];

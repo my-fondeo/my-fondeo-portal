@@ -19,5 +19,6 @@
     ],
     "jsx": "react-jsx",
     "jsxImportSource": "react",
+    "module": "es2022"
   }
 }

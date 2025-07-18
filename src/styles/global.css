@@ -1,3 +1,5 @@
+@import 'notyf/notyf.min.css';
+
 @import "tailwindcss";
 @tailwind utilities;
 
@@ -22,10 +24,17 @@ html {
   --color-quaternary: #000b38;
   --background-primary: linear-gradient(90deg, #000b38 0%, #002c6d 100%);
 
-  --color-primary-text: #FEFEFE;
-  
-  --color-bg: #EEE;
+  --color-primary-text: #fefefe;
+
+  --color-bg: #eee;
 
   /* Fuentes */
   --font-poppins: "Poppins";
+}
+
+@layer utilities {
+  input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px theme("colors.quaternary") inset !important;
+    -webkit-text-fill-color: theme("colors.primary-text") !important;
+  }
 }

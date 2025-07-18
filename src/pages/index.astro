@@ -14,6 +14,8 @@ import { getCollection } from "astro:content";
 import UsersOpinionsCarrousel from "@components/landing/UsersOpinionsCarrousel.tsx";
 import FAQS from "@components/landing/faqs/FAQs.astro";
 
+export const prerender = true;
+
 const benefitCards = [
   {
     title: "Escalable",
