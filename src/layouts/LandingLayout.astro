@@ -23,6 +23,7 @@ const {
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,7 +38,7 @@ const {
   <body>
     <Navbar />
     <main
-      class="p-10 pt-[110px] w-[1080px] z-2 flex flex-col items-center gap-48 pb-0 flex-1"
+      class="p-4 sm:p-6 md:p-8 lg:p-10 pt-[90px] sm:pt-[100px] md:pt-[110px] w-full max-w-7xl z-2 flex flex-col items-center gap-16 sm:gap-24 md:gap-32 lg:gap-48 pb-0 flex-1"
     >
       <AOSWrapper client:only />
       <slot />

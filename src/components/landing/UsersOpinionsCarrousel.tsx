@@ -31,7 +31,17 @@ export default ({ items, firstIndex = 0 }: Props) => {
         modules={[Autoplay]}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         spaceBetween={20}
-        slidesPerView={3}
+        slidesPerView={1}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+        }}
         initialSlide={firstIndex}
         centeredSlides={true}
         loop
@@ -52,13 +62,13 @@ export default ({ items, firstIndex = 0 }: Props) => {
       </Swiper>
       
       <button
-        className="text-3xl absolute w-10 block left-0 translate-x-[-75%] top-[50%] z-20 bg-white text-align rounded-4xl text-primary cursor-pointer aspect-square"
+        className="text-xl sm:text-2xl lg:text-3xl absolute w-8 sm:w-9 lg:w-10 left-0 translate-x-[-50%] sm:translate-x-[-75%] top-[50%] z-20 bg-white text-align rounded-2xl sm:rounded-4xl text-primary cursor-pointer aspect-square hidden sm:flex items-center justify-center"
         onClick={onPrev}
       >
         &lt;
       </button>
       <button
-        className="text-3xl absolute w-10 block right-0 translate-x-[75%] top-[50%] z-20 bg-white text-align rounded-4xl text-primary cursor-pointer aspect-square"
+        className="text-xl sm:text-2xl lg:text-3xl absolute w-8 sm:w-9 lg:w-10 right-0 translate-x-[50%] sm:translate-x-[75%] top-[50%] z-20 bg-white text-align rounded-2xl sm:rounded-4xl text-primary cursor-pointer aspect-square hidden sm:flex items-center justify-center"
         onClick={onNext}
       >
         &gt;
@@ -79,7 +89,7 @@ const Slide = ({ item, i }: SlideProps) => {
   return (
     <div
       role="button"
-      className={`transition-all duration-300 rounded-xl cursor-pointer mt-10
+      className={`transition-all duration-300 rounded-xl cursor-pointer mt-6 sm:mt-8 lg:mt-10
               ${
                 slide.isActive
                   ? "scale-100 border border-primary bg-secondary z-10 text-primary-text"
@@ -88,15 +98,15 @@ const Slide = ({ item, i }: SlideProps) => {
             `}
       onClick={(e) => swiper.slideToLoop(i)}
     >
-      <div className="flex justify-left items-stretch gap-5 p-4">
-        <div className="relative min-w-[100px]">
+      <div className="flex justify-left items-stretch gap-3 sm:gap-4 lg:gap-5 p-3 sm:p-4">
+        <div className="relative min-w-[80px] sm:min-w-[90px] lg:min-w-[100px]">
           <img
             src={item.image.src}
             alt={`Profile picture of ${item.username}`}
-            className="rounded-xl w-[100px] aspect-square align-bottom absolute top-[-100%] left-0"
+            className="rounded-xl w-[80px] sm:w-[90px] lg:w-[100px] aspect-square align-bottom absolute top-[-100%] left-0"
           />
         </div>
-        <div className="text-center font-semibold">
+        <div className="text-center font-semibold text-sm sm:text-base">
           {item.name} <br />
           {item.username}
         </div>

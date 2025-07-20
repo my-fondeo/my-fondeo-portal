@@ -38,9 +38,9 @@ body::before {
   background: url("../assets/bg/1.png");
   background-size: cover;
   position: fixed;
-  width: 900px;
   aspect-ratio: 1;
   z-index: -0;
+  width: min(900px, 80vw);
 }
 
 body::after {
@@ -57,11 +57,22 @@ body::before {
 }
 
 .btn {
-  @apply border border-white py-2 px-4 rounded-xl cursor-pointer font-bold;
+  @apply border border-white py-2 px-4 rounded-xl cursor-pointer font-bold text-sm sm:text-base;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  @apply scale-105 shadow-lg;
 }
 
 .landing-hero {
-  @apply grid gap-24 items-center;
-  grid-template-columns: 55% 1fr;
+  @apply grid gap-8 sm:gap-12 md:gap-16 lg:gap-24 items-center;
+  grid-template-columns: 1fr;
   view-timeline: --scroll;
+}
+
+@media (min-width: 768px) {
+  .landing-hero {
+    grid-template-columns: 55% 1fr;
+  }
 }

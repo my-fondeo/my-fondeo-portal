@@ -11,14 +11,14 @@ interface Props {
 }
 
 const { className = "", variant = "normal" } = Astro.props;
-const width = variant == "normal" ? 50 : 40;
+const width = variant == "normal" ? 40 : 32;
 const image = variant == "normal" ? indicator : indicatorDark;
 ---
 
 <li class={className}>
-  <Image src={image} alt="" width={width} />
+  <Image src={image} alt="" width={width} class="flex-shrink-0 w-8 sm:w-10 lg:w-12 h-auto" />
 
-  <span>
+  <span class="text-sm sm:text-base">
     <slot />
   </span>
 </li>
