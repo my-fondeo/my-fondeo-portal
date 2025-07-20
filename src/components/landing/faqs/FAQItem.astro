@@ -10,14 +10,14 @@ const { question } = Astro.props;
   class="group rounded-2xl details-content:h-0 details-content:transition-all details-content:overflow-hidden details-content:duration-300 details-content:ease-in-out open:details-content:h-auto"
 >
   <summary
-    class="flex max-h-[75px] items-center border border-gray-300 justify-between cursor-pointer text-lg font-medium text-gray-800 p-4 pl-6 pr-10 rounded-3xl bg-quaternary group-open:bg-white group-open:border-0 overflow-hidden"
+    class="flex max-h-[60px] sm:max-h-[70px] lg:max-h-[75px] items-center border border-gray-300 justify-between cursor-pointer text-base sm:text-lg font-medium text-gray-800 p-3 sm:p-4 pl-4 sm:pl-6 pr-8 sm:pr-10 rounded-2xl sm:rounded-3xl bg-quaternary group-open:bg-white group-open:border-0 overflow-hidden"
   >
     <span
-      class="text-primary-text group-open:text-quaternary transition-color text-xl"
+      class="text-primary-text group-open:text-quaternary transition-color text-sm sm:text-lg lg:text-xl"
       >{question}</span
     >
     <svg
-      class="w-10 aspect-square transition-transform duration-300 group-open:rotate-180 bg-primary p-2 rounded-full"
+      class="w-8 sm:w-9 lg:w-10 aspect-square transition-transform duration-300 group-open:rotate-180 bg-primary p-1.5 sm:p-2 rounded-full flex-shrink-0"
       fill="none"
       stroke="white"
       stroke-width="3"
@@ -28,7 +28,7 @@ const { question } = Astro.props;
     </svg>
   </summary>
   <div
-    class="mt-2 leading-relaxed text-primary-text transition-discrete starting:max-h-0 text-xl px-1"
+    class="mt-1.5 sm:mt-2 leading-relaxed text-primary-text transition-discrete starting:max-h-0 text-sm sm:text-lg lg:text-xl px-0.5 sm:px-1"
   >
     <slot />
   </div>

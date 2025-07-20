@@ -23,6 +23,7 @@ const {
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,14 +36,14 @@ const {
     <title>{title ?? "My Fondeo"}</title>
   </head>
   <body>
-    <span>
-      <a href="/" class="mt-2">ir al landing</a> -- 
+    <span class="fixed top-4 right-4 z-30 flex gap-2 text-sm">
+      <a href="/" class="bg-white text-secondary px-3 py-1 rounded-lg hover:bg-gray-100 transition-colors">ir al landing</a>
       <form method="POST" action="/logout" style="display:inline;">
-        <button type="submit" class="mt-2">cerrar sesión</button>
+        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors">cerrar sesión</button>
       </form>
     </span>
     <main
-      class="p-10 pt-[110px] w-[1080px] z-2 flex flex-col items-center gap-48 pb-0 flex-1"
+      class="p-4 sm:p-6 md:p-8 lg:p-10 pt-16 sm:pt-20 w-full max-w-7xl mx-auto z-2 flex flex-col items-center gap-16 sm:gap-24 md:gap-32 lg:gap-48 pb-0 flex-1 min-h-screen"
     >
       <slot />
     </main>

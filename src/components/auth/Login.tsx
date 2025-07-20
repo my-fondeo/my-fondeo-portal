@@ -30,18 +30,18 @@ const Login = () => {
 
   return (
     <form
-      className="text-secondary w-full md:w-[80%]"
+      className="text-secondary w-full sm:w-[90%] md:w-[80%]"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <p className="mt-10 mb-5 font-medium h-12">
+      <p className="mt-6 sm:mt-8 lg:mt-10 mb-4 sm:mb-5 font-medium h-10 sm:h-12 text-sm sm:text-base">
         Bienvenido de vuelta. <br /> Tu próximo movimiento te espera.
       </p>
-      <h1 className="text-5xl">Ingresa</h1>
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl">Ingresa</h1>
 
       <Input
         label="Correo electrónico"
         placeholder="example@email.com"
-        className="mt-7"
+        className="mt-4 sm:mt-6 lg:mt-7"
         error={errors.email?.message}
         {...register("email", emailFormOptions)}
       />
@@ -54,7 +54,7 @@ const Login = () => {
           validate: { ...passwordValidators },
         })}
       />
-      <button className="mt-6 py-3 px-10 bg-quaternary text-primary-text cursor-pointer rounded-xl">
+      <button className="mt-4 sm:mt-6 py-2.5 sm:py-3 px-8 sm:px-10 bg-quaternary text-primary-text cursor-pointer rounded-xl text-sm sm:text-base hover:bg-quaternary/90 transition-colors">
         Ingresar
       </button>
       <br />

@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import svgr from 'vite-plugin-svgr';
 
 import react from "@astrojs/react";
-import node from "@astrojs/node";
+import awsAmplify from 'astro-aws-amplify';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,7 +13,5 @@ export default defineConfig({
   },
   base: '/',
   integrations: [react()],
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: awsAmplify(),
 });
