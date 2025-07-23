@@ -16,7 +16,7 @@ const image = variant == "normal" ? indicator : indicatorDark;
 ---
 
 <li class={className}>
-  <Image src={image} alt="" width={width} class="flex-shrink-0 w-8 sm:w-10 lg:w-12 h-auto" />
+  <img src={image.src} alt="" width={width} class="flex-shrink-0 w-8 sm:w-10 lg:w-12 h-auto" />
 
   <span class="text-sm sm:text-base">
     <slot />

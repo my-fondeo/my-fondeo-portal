@@ -54,7 +54,11 @@ if (!opinionsCollection || !stepsCollection) return null;
       <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
         ¿Tu pasión deportiva no te da ganancias reales?
       </h3>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-primary">Hasta ahora</h1>
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-primary"
+      >
+        Hasta ahora
+      </h1>
       <p class="font-medium tracking-wide text-sm sm:text-base">
         Transforma tu pasión en un negocio rentable: <br />Te damos el capital y
         la metodología para que operes como un profesional, sin arriesgar tu
@@ -87,15 +91,18 @@ if (!opinionsCollection || !stepsCollection) return null;
   <div id="quienes-somos" class="pt-15 sm:pt-20 md:pt-25 lg:pt-30">
     <div class="grid grid-cols-1 md:grid-cols-[40%_60%] gap-6 md:gap-2">
       <div class="flex justify-center order-2 md:order-1" data-aos="fade-right">
-        <Image
-          src={stressedImage}
+        <img
+          src={stressedImage.src}
           alt="Persona estresada"
           height={347}
           width={295.7}
-          class="max-w-full h-auto w-48 sm:w-56 md:w-64 lg:w-auto"
+          class="max-w-full h-auto w-48 sm:w-56 md:w-80 aspect-[295/347]"
         />
       </div>
-      <div class="space-y-3 sm:space-y-4 md:space-y-5 order-1 md:order-2" data-aos="fade-left">
+      <div
+        class="space-y-3 sm:space-y-4 md:space-y-5 order-1 md:order-2"
+        data-aos="fade-left"
+      >
         <h1 class="text-primary text-2xl sm:text-3xl lg:text-4xl font-bold">
           ¿Te suena familiar alguna de estas historias?
         </h1>
@@ -123,7 +130,9 @@ if (!opinionsCollection || !stepsCollection) return null;
       data-aos="fade-topudddddddd"
     >
       <div class="space-y-2 sm:space-y-3">
-        <h1 class="text-secondary text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
+        <h1
+          class="text-secondary text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold"
+        >
           ¡Hay quienes ya viven del deporte!
         </h1>
         <h3 class="text-secondary text-base sm:text-lg lg:text-xl">
@@ -143,8 +152,8 @@ if (!opinionsCollection || !stepsCollection) return null;
           >Descubre el Secreto Ahora</button
         >
       </div>
-      <Image
-        src={adviserImage}
+      <img
+        src={adviserImage.src}
         alt="Asesora"
         width={297}
         height={336}
@@ -168,7 +177,9 @@ if (!opinionsCollection || !stepsCollection) return null;
           <strong>activo.</strong>
         </p>
         <h3 class="text-base sm:text-lg">Nuestros beneficios</h3>
-        <div class="grid grid-cols-2 lg:flex lg:justify-between w-full gap-2 lg:gap-2">
+        <div
+          class="grid grid-cols-2 lg:flex lg:justify-between w-full gap-2 lg:gap-2"
+        >
           {
             benefitCards.map(({ title, icon, description }) => (
               <BenefitCard title={title} icon={icon as any}>
@@ -178,18 +189,24 @@ if (!opinionsCollection || !stepsCollection) return null;
           }
         </div>
       </div>
-      <Image
-        src={happyImage}
+      <img
+        src={happyImage.src}
         alt="Persona feliz"
-        height={347}
-        width={295.7}
-        class="mask-b-from-75% mask-b-to-99% max-w-full h-auto w-48 sm:w-56 md:w-64 lg:w-auto order-1 lg:order-2 mx-auto"
+        class="mask-b-from-75% mask-b-to-99% max-w-full h-auto w-48 sm:w-56 md:w-64 lg:w-100 order-1 lg:order-2 mx-auto aspect-[296/347]"
       />
     </div>
-    <div class="bg-white rounded-2xl sm:rounded-3xl lg:rounded-4xl p-4 sm:p-6 lg:p-7.5 text-secondary w-full max-w-none lg:w-[120%]">
-      <h2 class="text-lg sm:text-xl lg:text-2xl font-bold">Así de simple es operar con MyFondeo.</h2>
-      <p class="text-base sm:text-lg lg:text-xl font-medium">Tu Camino al Éxito en 3 Pasos:</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-5 mt-3 px-0 sm:px-2 lg:px-5">
+    <div
+      class="bg-white rounded-2xl sm:rounded-3xl lg:rounded-4xl p-4 sm:p-6 lg:p-7.5 text-secondary w-full max-w-none lg:w-[120%]"
+    >
+      <h2 class="text-lg sm:text-xl lg:text-2xl font-bold">
+        Así de simple es operar con MyFondeo.
+      </h2>
+      <p class="text-base sm:text-lg lg:text-xl font-medium">
+        Tu Camino al Éxito en 3 Pasos:
+      </p>
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-5 mt-3 px-0 sm:px-2 lg:px-5"
+      >
         {
           stepsCollection.map(async ({ data, render }, i) => {
             const { Content } = await render();
@@ -207,7 +224,9 @@ if (!opinionsCollection || !stepsCollection) return null;
 
   <!-- SECTION Opiniones usuarios-->
   <div class="flex flex-col items-center max-w-full">
-    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-center mb-6 sm:mb-8 lg:mb-10 px-4">
+    <h1
+      class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-center mb-6 sm:mb-8 lg:mb-10 px-4"
+    >
       Ellos ya viven del deporte. Conoce sus resultados.
     </h1>
 
@@ -220,29 +239,47 @@ if (!opinionsCollection || !stepsCollection) return null;
   </div>
 
   <div class="flex flex-col items-center pt-16 sm:pt-20 lg:pt-29" id="FAQ">
-    <div class="w-full max-w-none lg:w-[150%] grid grid-cols-1 lg:grid-cols-[35%_55%] gap-8 lg:gap-[10%] pb-16 sm:pb-24 lg:pb-32">
-      <div data-aos="fade-right" data-aos-mirror="true" data-aos-offset="500" class="order-2 lg:order-1">
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl text-primary-text font-bold text-center lg:text-left">
+    <div
+      class="w-full max-w-screen lg:w-[150%] flex flex-col-reverse lg:grid lg:grid-cols-[35%_55%] lg:gap-[10%] pb-16 sm:pb-24 lg:pb-32 justify-center"
+    >
+      <div
+        data-aos="fade-right"
+        data-aos-mirror="true"
+        data-aos-offset="500"
+        class="order-2 lg:order-1"
+      >
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl text-primary-text font-bold text-center lg:text-left"
+        >
           Despeja tus dudas <br />
           <span class="text-primary">(al instante)</span>
         </h1>
         <div class="flex justify-center lg:block">
-          <Image src={doubting} alt="" class="max-w-full h-auto w-64 sm:w-80 lg:w-auto" />
+          <img
+            src={doubting.src}
+            alt=""
+            class="max-w-full h-auto w-64 sm:w-80 lg:w-auto"
+          />
         </div>
       </div>
-      <div class="order-1 lg:order-2">
+      <div class="order-1 lg:order-2 mt-8 lg:mt-0">
         <FAQS />
       </div>
     </div>
   </div>
 
-  <div class="px-2 sm:px-4 lg:px-5 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6 lg:gap-0">
+  <div
+    class="px-2 sm:px-4 lg:px-5 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6 lg:gap-0"
+  >
     <div class="order-2 lg:order-1 text-center lg:text-left">
-      <span class="text-2xl sm:text-3xl lg:text-4xl text-primary-text font-semibold mt-2"
+      <span
+        class="text-2xl sm:text-3xl lg:text-4xl text-primary-text font-semibold mt-2"
         >Convierte tu conocimiento deportivo en</span
       >
       <br />
-      <span class="text-4xl sm:text-5xl lg:text-7xl text-primary font-bold">Ingresos reales</span>
+      <span class="text-4xl sm:text-5xl lg:text-7xl text-primary font-bold"
+        >Ingresos reales</span
+      >
 
       <button
         class="btn bg-white text-secondary mt-8 sm:mt-16 lg:mt-32 block mx-auto lg:ml-4"
@@ -252,7 +289,11 @@ if (!opinionsCollection || !stepsCollection) return null;
       </button>
     </div>
     <div class="order-1 lg:order-2 flex justify-center">
-      <Image src={surprisedPerson} alt="" class="max-w-full h-auto w-64 sm:w-80 lg:w-auto" />
+      <img
+        src={surprisedPerson.src}
+        alt=""
+        class="max-w-full h-auto w-64 sm:w-80 lg:w-100"
+      />
     </div>
   </div>
 </LandingLayout>
