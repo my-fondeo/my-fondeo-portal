@@ -1,5 +1,4 @@
 
-import { AxiosError } from "axios";
 import { authApi } from "../api/auth";
 import { type User } from "../interfaces/user";
 

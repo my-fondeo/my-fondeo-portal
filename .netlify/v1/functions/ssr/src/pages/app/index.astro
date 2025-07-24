@@ -1,0 +1,14 @@
+---
+import DashboardLayout from "@layouts/DashboardLayout.astro";
+
+export const prerender = false;
+---
+
+<DashboardLayout>
+  Dashboard :)
+</DashboardLayout>
+<script>
+  if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
+</script>
