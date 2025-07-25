@@ -15,7 +15,6 @@ const routes = [
 <nav id="nav">
   <Logo />
 
-  <!-- Desktop Menu -->
   <ul class="hidden md:flex justify-between items-center relative">
     {
       routes.map(({ path, label }) => (
@@ -46,7 +45,7 @@ const routes = [
     <a class="bg-transparent text-primary-text btn text-xs lg:text-sm" href="auth#login"
       >Iniciar sesión</a
     >
-    <a class="bg-white text-secondary btn text-xs lg:text-sm">Empezar</a>
+    <a class="bg-white text-secondary btn text-xs lg:text-sm" href="/challenges">Empezar</a>
   </div>
 </nav>
 

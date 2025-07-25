@@ -1,8 +1,9 @@
-import { emailFormOptions, passwordValidators } from "@util/form/errors";
-import { Input } from "./ui/Input";
+import { emailFormOptions } from "@util/form/errors";
 import { actions } from "astro:actions";
 import { useForm } from "react-hook-form";
-import { Notyf } from 'notyf';
+import { Notyf } from "notyf";
+import { Input } from "../ui/Input";
+import { useState } from "react";
 
 const notyf = new Notyf({ position: { x: "center", y: "center" } });
 
@@ -18,12 +19,16 @@ const Login = () => {
     formState: { errors, isValid },
   } = useForm<FormData>();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async ({ email, password }: FormData) => {
-    const {data, error} = await actions.login({
+    if (isLoading) return;
+    setIsLoading(true);
+    const { data, error } = await actions.login({
       email,
       password,
     });
-
+    setIsLoading(false);
     if (error) notyf.error(error.message || "Error al iniciar sesión");
     if (data) window.location.href = "/app";
   };
@@ -49,13 +54,18 @@ const Login = () => {
         label="Contraseña"
         passInput
         className="mt-2"
+        error={errors.password?.message}
         {...register("password", {
           required: "Contraseña requerida.",
-          validate: { ...passwordValidators },
+          minLength: { message: "Contraseña muy corta", value: 6 },
         })}
       />
       <button className="mt-4 sm:mt-6 py-2.5 sm:py-3 px-8 sm:px-10 bg-quaternary text-primary-text cursor-pointer rounded-xl text-sm sm:text-base hover:bg-quaternary/90 transition-colors">
-        Ingresar
+        {isLoading ? (
+          <span className="inline-block w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin align-middle"></span>
+        ) : (
+          "Ingresar"
+        )}
       </button>
       <br />
       <p className="mt-3">

@@ -1,12 +1,14 @@
 ---
 import LandingLayout from "@layouts/LandingLayout.astro";
-import { AuthContainer } from "@components/auth/AuthContainer";
+import { AuthContainer } from "@components/auth/screens/AuthContainer";
 
 export const prerender = false;
 ---
 
 <LandingLayout>
-  <div class="grid grid-cols-1 lg:grid-cols-[60%_1fr] min-h-[500px] lg:h-186 w-full lg:w-[95vw] xl:w-[125%] mt-8 sm:mt-6 lg:mt-16 max-w-[80vw]">
+  <div
+    class="grid grid-cols-1 lg:grid-cols-[60%_1fr] min-h-[500px] lg:h-186 w-full lg:w-[95vw] xl:w-[125%] mt-8 sm:mt-6 lg:mt-16 max-w-[80vw]"
+  >
     <AuthContainer client:only />
     <div
       class="hidden lg:flex backdrop-blur-md bg-gray-100/5 border border-primary rounded-r-2xl p-6 lg:p-12 flex-col justify-evenly"
@@ -16,7 +18,9 @@ export const prerender = false;
           "Gracias a MyFondeo, mi pasión se convirtió en mi negocio.
           ¡Recomendado 100%!"
         </p>
-        <p class="text-base lg:text-lg font-bold text-right mt-[-6px]">Ricardo G.</p>
+        <p class="text-base lg:text-lg font-bold text-right mt-[-6px]">
+          Ricardo G.
+        </p>
       </div>
       <!--  -->
       <div>
@@ -24,7 +28,9 @@ export const prerender = false;
           "La plataforma es intuitiva y el 80% de mis ganancias es mío. Súper
           transparente."
         </p>
-        <p class="text-base lg:text-lg font-bold text-right mt-[-6px]">Daniela C.</p>
+        <p class="text-base lg:text-lg font-bold text-right mt-[-6px]">
+          Daniela C.
+        </p>
       </div>
       <!--  -->
       <div>
@@ -32,7 +38,9 @@ export const prerender = false;
           "Pasé del 'apostar' al 'operar'. MyFondeo me dio la disciplina y el
           capital. ¡Imparable!"
         </p>
-        <p class="text-base lg:text-lg font-bold text-right mt-[-6px]">Andrés M.</p>
+        <p class="text-base lg:text-lg font-bold text-right mt-[-6px]">
+          Andrés M.
+        </p>
       </div>
       <!--  -->
       <div>
@@ -40,7 +48,9 @@ export const prerender = false;
           "La plataforma es de primer nivel. Fácil de usar y con resultados que
           hablan por sí mismos."
         </p>
-        <p class="text-base lg:text-lg font-bold text-right mt-[-6px]">Carlos V.</p>
+        <p class="text-base lg:text-lg font-bold text-right mt-[-6px]">
+          Carlos V.
+        </p>
       </div>
     </div>
   </div>

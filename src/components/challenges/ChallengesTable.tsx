@@ -178,19 +178,24 @@ const challenges = [
 
 export const ChallengesTable = () => {
   const { isEnabled } = useProLanding();
+  
   return (
-    <div className="w-[125%] grid grid-cols-6 mt-12">
+    <div className="lg:w-[125%] justify-center grid lg:grid-cols-6 grid-cols-[40%_55%] mt-12">
       <ChallengeLabels />
 
       {challenges.map(
-        ({ cost, discount, totalAmount, proCost, proDiscount }) => (
-          <ChallengeCard
+        ({ cost, discount, totalAmount, proCost, proDiscount }, index) => (
+          <div
             key={totalAmount}
-            totalAmount={totalAmount}
-            initialValues={isEnabled ? defaultProValues : defaultValues}
-            cost={isEnabled ? proCost : cost}
-            discount={isEnabled ? proDiscount : discount}
-          />
+            className={index > 0 ? 'hidden lg:block' : ''}
+          >
+            <ChallengeCard
+              totalAmount={totalAmount}
+              initialValues={isEnabled ? defaultProValues : defaultValues}
+              cost={isEnabled ? proCost : cost}
+              discount={isEnabled ? proDiscount : discount}
+            />
+          </div>
         )
       )}
     </div>

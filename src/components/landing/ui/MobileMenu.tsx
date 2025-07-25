@@ -25,7 +25,7 @@ export default function MobileMenu({ routes }: MobileMenuProps) {
       {/* Mobile Menu Button */}
       <button
         onClick={toggleMenu}
-        className="md:hidden flex flex-col gap-1 p-2"
+        className="md:hidden flex flex-col gap-1 p-2 cursor-pointer"
         aria-label="Toggle mobile menu"
       >
         <span

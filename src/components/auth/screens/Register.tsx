@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Input } from "./ui/Input";
+import { Input } from "../ui/Input";
 import { actions } from "astro:actions";
 import { useEffect } from "react";
 import { emailFormOptions, passwordValidators } from "@util/form/errors";
